@@ -42,7 +42,9 @@ git 이 있으면 그냥 진행 없으면 설치 작업 진행
 
 콘솔창을 띄운후 
 
-
+하원4131
+이메일 : 서브이메일 -> jerrykim91
+비번 지은 4131
 ```bash
 git clone 주소.git 
 ```
@@ -59,7 +61,12 @@ git clone 주소.git
 
 중간중간 패키지 설치하고 `pip install 모듈`
 
-데이터베이스 초기화 `$ python manage.py migrate` -> `(가상환경이름) $ python manage.py createsuperuser`
+`$ python manage.py ckeck` 
+
+데이터베이스 초기화 `$ python manage.py migrate` 
+
+잊지말고 `(가상환경이름) $ python manage.py createsuperuser`  -> mysql은 초기에 설정해줘야함 ... (이거때문에 한번 밀어버린건 ... )
+
 
 정적파일 수집( 서버가 찾을 수 있는 장소에 집합 ) `python manage.py collectstatic` -> 안될 경우 있음 그럴때는 일단 패스 
 
@@ -161,6 +168,8 @@ DATABASES = {
 
 ```
 
+
+여기서 잊지말고 `http://사용자id.pythonanywhere.com/admin/` 테스트 해보기 바람 .... 
 
 <br>
 <br>

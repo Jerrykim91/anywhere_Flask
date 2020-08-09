@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- head  -->
+{% include './main/head.html' %}
+<body>
+    <div class="container"  style="width: 50%">
+    
+        <!-- <h1>잊어라</h1> -->
+        <div class="container-md pt-5">
+        <!-- <button class="btn btn-dark btn-lg " type="submit" >입장하기</button> -->
+        {% if not request.user.is_authenticated %}
+
+        <!-- <a href='member/sign_in' class="btn btn- alert-light btn-lg " role="button">입장하기</a> -->
+        <!-- <a href='service/camera' class="btn btn- alert-light btn-lg " role="button">카메라촬영</a> -->
+        <!-- <a href="member/sign_up"><img src="../static/img/a.PNG"/></a> -->
+        <p> 안녕하세요. 방문자님</p>
+        <p> 아쉽게도 지금은 공사중인 관계로 추후에 방문해 주세요. </p>
+        <a href="member/sign_in"><img src="../static/img/a.PNG"/></a>
+
+
+        {% else %}
+        <br>
+        <br>
+        <p> 반갑습니다. {{request.user.name}}님</p>
+        <hr />
+        아이디 정보 : {{request.user.username}} <br/>
+        이름 정보   : {{request.user.name}} <br/>
+        <!-- 선호 맛   : {{request.user.j_taste}} <br/> -->
+        <!-- <p><a href="member/sign_out"> 로그아웃 </a></p> -->
+
+
+        <hr />
+
+        {% endif %}
+
+
+        </div>
+    </form>
+</body>
+</html>
+
