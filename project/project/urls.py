@@ -20,5 +20,5 @@ from MainField import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('MainField/', include('MainField.urls')),
-    # path('', views.Main, name='Main') # 첫 화면 ,
+    path('', views.Main, name='Main') # 첫 화면 ,
 ]
