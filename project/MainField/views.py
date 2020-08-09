@@ -11,6 +11,14 @@ from django.contrib.auth import logout as logout
 from django.contrib.auth import get_user_model
 
 
+@csrf_exempt
+def Main(request):
+    '''
+    Main 
+    '''
+    if request.method == 'GET':
+        return render(request,'index_kr.html')
+
 # db
 # from django.db import connection
 # cursor = connection.cursor()
@@ -41,11 +49,3 @@ from django.contrib.auth import get_user_model
 #     '''
 #     return HttpResponse(txt)
 
-
-@csrf_exempt
-def Main(request):
-    '''
-    Main 
-    '''
-    if request.method == 'GET':
-        return render(request,'Main.html')
