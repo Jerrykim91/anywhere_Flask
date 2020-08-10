@@ -42,9 +42,6 @@ git 이 있으면 그냥 진행 없으면 설치 작업 진행
 
 콘솔창을 띄운후 
 
-하원4131
-이메일 : 서브이메일 -> jerrykim91
-비번 지은 4131
 ```bash
 git clone 주소.git 
 ```
@@ -94,11 +91,11 @@ import os
 import sys
 
 path = '/home/아이디/폴더이름'  
-# /home/jerrykim91/Portfolio/myenv/bin/python
+# /home/아이디/폴더이름/myenv/bin/python  #  내경로
 if path not in sys.path:
     sys.path.append(path)
 
-os.environ['DJANGO_SETTINGS_MODULE'] = '설정폴더이름(=폴더이름).settings' # 에러발생 
+os.environ['DJANGO_SETTINGS_MODULE'] = '설정폴더이름(=폴더이름).settings' 
 
 from django.core.wsgi import get_wsgi_application
 from django.contrib.staticfiles.handlers import StaticFilesHandler
@@ -176,8 +173,62 @@ DATABASES = {
 
 ## SECRET_KEY 의 보안을 위한 재설정 
 
+[참고](https://wayhome25.github.io/django/2017/07/11/django-settings-secret-key/)
 
-(추후)
+프로젝트를 생성하면 장고의 `setting.py` 을 통해 여러가지 설정을하는데 거기서 가장 중요한것이 보안키(`SECRET_KEY`)
+
+`SECRET_KEY` 장고 보안 기능에 활용되는 키 값으로 생각없이 내가 애용하는 github에 그대로 노출 ㅎㅎㅎㅎ 
+몇번의 실패들..?을 해서 딱히 신경은 안썻지만 나..름..? 안정화 되고있어서 보안키를 노출하지 않는법을 공부했다. 
+
+
+`SECRET_KEY` : 쿠키데이터 , 해시, 암호화 같은 임시적인 일에 사용되며 변경 시 세션등의 데이터가 사라질수있다. 
+                 50자의 랜덤 문자로 구성되어 있는데, Django Secret Key Generator 라는 것도 존재한다고 한다. 
+
+
+
+### 키 분리하는 방법은 2가지가 있다. 
+
+1. 환경변수 패턴
+    - 환경 변수 -> ??? 
+    - 환경변수를 사용하여 비밀 키를 보관함으로써 걱정 없이 세팅파일을 github 공개 저장소에 추가
+    - `SECRET_KEY` 의 값을 환경변수에 저장하여 참고
+
+(조금더 공부한후에 작성)
+
+
+2. 비밀파일 패턴
+    - `SECRET_KEY` 의 값을 별도의 파일에 저장하여 참고
+
+```json
+// secret.json
+{
+  "SECRET_KEY": "b_4(!id8ro!1645n@ub55555hbu93gaia0 " //본인의 고유 비밀 키 추가
+}
+
+```
+
+나는 파일 형식으로 진행했다.. 너무 잘 밀다보니 ... 
+
+```py
+import json
+from django.core.exceptions import ImproperlyConfigured
+
+with open('secrets.json') as f:
+    secret = json.loads(f.read())
+
+def get_secret(setting, secret=secret):
+    try:
+        return secret[setting]
+    except KeyError:
+        error_msg = "Set the {} environment variable".format(setting)
+        raise ImproperlyConfigured(error_msg)
+
+
+SECRET_KEY = get_secret("SECRET_KEY")
+
+```
+
+
 
 ---
 
@@ -239,18 +290,39 @@ DATABASES = {
 
 ---
 
-#### 완료하기 전 에러 
+### 한번 밀때마다의 후기
 
-이것 말고 기존에 있는 작업물로 진행하려다 하루를 날렸는데     
+#### 1차 
 
-오늘 작업하다 확인한것이 Django 버전이 2.x 에서 3.x로 바뀌면서     
-os 모듈을 이용하는 방식에서 path 모듈이용방식으로 바뀌었다. 
+기존에 만들어둔 프로젝트로 열려고 하니 
+경로에러가 계속뜬다... 밀어야하나 ... 
 
-이부분을 재설정해주니까 탬플릿의 경로를 찾지 못하는 에러가 해결되었다(여기서만...)
+
+#### 2차 
+
+밀고 처음부터 했는데 
+역시나 안된다... 무엇이 문제..인지 모르겠다... 
+또 밀어서 다른 방법으로 접근해봐야지 ... 
+
+#### 3차
 
 이 프로젝트 같은경우 가상환경안에서 Django 프로젝트 폴더를 생성하고 한것이라 
+
 기존에 있는 실패?한 프로젝트를 하나씩 엎어 가면서 오류를 찾아보고자 한다. 
 
+[ 템플릿 에러 해결]
+작업하다 확인한것이 Django 버전이 2.x 에서 3.x로 바뀌면서     
+os 모듈을 이용하는 방식에서 path 모듈 이용 방식으로 바뀌었다. 
+
+이부분을 재설정해주니까 템플릿의 경로를 찾지 못하는 에러가 해결되었다. 
 역시 컴퓨터는 죄가 없다.... 내가 죄지... 모르는죄 크흡.....
 
-하 4번째 밀기 .... ㅎㅎㅎㅎㅎㅎ 
+
+#### 4차
+
+결국 밀고 새로 만들었다. 하 4번째 밀기 .... ㅎㅎㅎㅎㅎㅎ 
+데이터 베이스(파이썬에니워어의db)를 장고 어플리케이션을 생성하고 만들엇더니 에러가났다.. 
+버그라나 뭐라나...
+슈퍼 계정에 접근하는데 에러가나서 설마했는데 몇시간을 헤매다가 결국 밀고 
+지금은 ... 템플릿을 입힌 상태... 다행인데 왜 난겁나냐 ... 
+앞으로가 걱정되는...ㅎㅎㅎㅎㅎ
