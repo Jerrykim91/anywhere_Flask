@@ -181,9 +181,17 @@ DATABASES = {
 몇번의 실패들..?을 해서 딱히 신경은 안썻지만 나..름..? 안정화 되고있어서 보안키를 노출하지 않는법을 공부했다. 
 
 
-`SECRET_KEY` : 쿠키데이터 , 해시, 암호화 같은 임시적인 일에 사용되며 변경 시 세션등의 데이터가 사라질수있다. 
+`SECRET_KEY` : 쿠키데이터, 해시, 암호화 같은 임시적인 일에 사용되며 변경 시 세션등의 데이터가 사라질수있다. 
                  50자의 랜덤 문자로 구성되어 있는데, Django Secret Key Generator 라는 것도 존재한다고 한다. 
 
+용도 : 
+- django.contrib.sessions.backends.cache 다른 세션 백엔드를 사용하거나       
+    기본  get_session_auth_hash()를 사용하는 모든 세션
+- CookieStorage 또는 FallbackStorage를 사용하는 모든 메시지
+- 모든 PasswordResetView 토큰
+- 다른 키가 제공되지 않는 암호화 서명사용
+
+이뿐아니라 데이터베이스 정보 또한 보안을 고려해 관리하는 것이 좋다. 
 
 
 ### 키 분리하는 방법은 2가지가 있다. 

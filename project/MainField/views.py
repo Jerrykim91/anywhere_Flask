@@ -19,6 +19,10 @@ def Main(request):
     if request.method == 'GET':
         return render(request,'index_kr.html')
 
+
+# def MainGDP()
+#     pass
+
 # db
 # from django.db import connection
 # cursor = connection.cursor()
