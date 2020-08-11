@@ -12,13 +12,21 @@ from django.contrib.auth import get_user_model
 
 
 @csrf_exempt
-def Main(request):
+def MainKr(request):
     '''
-    Main 
+    MainKr - 기본값 
     '''
     if request.method == 'GET':
         return render(request,'index_kr.html')
 
+
+@csrf_exempt
+def MainEn(request):
+    '''
+    MainEn - 영어
+    '''
+    if request.method == 'GET':
+        return render(request,'index_en.html')
 
 # def MainGDP()
 #     pass

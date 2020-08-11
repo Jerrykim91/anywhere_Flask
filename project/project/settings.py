@@ -37,6 +37,7 @@ def get_secret(setting, secret=secret):
         error_msg = "Set key '{0}' in secret.json".format(setting)
         raise ImproperlyConfigured(error_msg)
 
+
 SECRET_KEY = get_secret('SECRET_KEY') # my-secret-key
 
 # SECURITY WARNING: don't run with debug turned on in production!

@@ -200,43 +200,63 @@ DATABASES = {
     - 환경 변수 -> ??? 
     - 환경변수를 사용하여 비밀 키를 보관함으로써 걱정 없이 세팅파일을 github 공개 저장소에 추가
     - `SECRET_KEY` 의 값을 환경변수에 저장하여 참고
+    - 보통은 기업에서는 AWS 배포 시 환경변수로 등록해 배포 한다고한다. 
 
 (조금더 공부한후에 작성)
 
 
 2. 비밀파일 패턴
-    - `SECRET_KEY` 의 값을 별도의 파일에 저장하여 참고
+
+`.json` 파일을 만들어서 비밀 키를 저장하고 호출하여 사용한다. 
+
+자 `secret.json` 의 이름으로 파일을 생성한다.
 
 ```json
 // secret.json
 {
-  "SECRET_KEY": "b_4(!id8ro!1645n@ub55555hbu93gaia0 " //본인의 고유 비밀 키 추가
+    "SECRET_KEY"    : "b_4(!id8ro!1645n@ub55555hbu93gaia0 ",  //본인의 고유 비밀 키 추가
+    "DATABASE_NAME" : "데이터 베이스 네임",
+    "DATABASE_USER" : "유저 네임",
+    "DATABASE_PASSWORD" : "패스워드"
 }
-
 ```
 
-나는 파일 형식으로 진행했다.. 너무 잘 밀다보니 ... 
+나는 파일 형식으로 진행했다.
+서버를 너무 잘 밀다보니 ..
 
 ```py
 import json
 from django.core.exceptions import ImproperlyConfigured
 
-with open('secrets.json') as f:
-    secret = json.loads(f.read())
+path = "secrets.json"
+with open(path) as f:
+    secrets = json.loads(f.read())
 
-def get_secret(setting, secret=secret):
+def get_secret(setting, secrets=secrets):
     try:
-        return secret[setting]
+        return secrets[setting]
     except KeyError:
         error_msg = "Set the {} environment variable".format(setting)
         raise ImproperlyConfigured(error_msg)
 
 
+# SECRET_KEY 키 설정 
 SECRET_KEY = get_secret("SECRET_KEY")
 
+# DATABASES 키 설정 -> 디비 사용하는 사람만 설정
+DATABASES = {
+    'default': {
+        ...
+        'NAME': get_secret("DATABASE_NAME"),
+        'USER': get_secret("DATABASE_USER"),
+        'PASSWORD': get_secret("DATABASE_PASSWORD"),
+        ...
+    }
+}
 ```
+`secret.json` 는 제외하고 보안키는 개인적으로 관리하는것을 추천한다. 
 
-
+이렇게 `secret.json`를 열심히 만들어 놓고 바보같이 공유 사이트나 github repo에 올리는 사람은 없겠지? 
 
 ---
 
@@ -314,16 +334,16 @@ DATABASES = {
 
 #### 3차
 
-이 프로젝트 같은경우 가상환경안에서 Django 프로젝트 폴더를 생성하고 한것이라 
+다행이도 가상 환경안에서 Django 프로젝트 폴더를 생성하였더니 동작하였다. 
 
-기존에 있는 실패?한 프로젝트를 하나씩 엎어 가면서 오류를 찾아보고자 한다. 
+세팅부터 기존에 있는 실패?한 프로젝트를 하나씩 엎어 가면서 오류를 찾아보고자 한다. 
 
 [ 템플릿 에러 해결]
 작업하다 확인한것이 Django 버전이 2.x 에서 3.x로 바뀌면서     
 os 모듈을 이용하는 방식에서 path 모듈 이용 방식으로 바뀌었다. 
 
 이부분을 재설정해주니까 템플릿의 경로를 찾지 못하는 에러가 해결되었다. 
-역시 컴퓨터는 죄가 없다.... 내가 죄지... 모르는죄 크흡.....
+역시 컴퓨터는 죄가 없다.... 내가 죄지... 모르는죄 크흡... 항상 버전! 조심 
 
 
 #### 4차
@@ -332,5 +352,5 @@ os 모듈을 이용하는 방식에서 path 모듈 이용 방식으로 바뀌었
 데이터 베이스(파이썬에니워어의db)를 장고 어플리케이션을 생성하고 만들엇더니 에러가났다.. 
 버그라나 뭐라나...
 슈퍼 계정에 접근하는데 에러가나서 설마했는데 몇시간을 헤매다가 결국 밀고 
-지금은 ... 템플릿을 입힌 상태... 다행인데 왜 난겁나냐 ... 
-앞으로가 걱정되는...ㅎㅎㅎㅎㅎ
+지금은 ... 템플릿을 입힌 상태... 다행인데 왜 난 겁이나냐 ... 
+앞으로가 걱정되는...ㅎㅎ
