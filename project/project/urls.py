@@ -19,7 +19,7 @@ from MainField import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('MainField/', include('MainField.urls')),
+    path('Main/', include('MainField.urls')),
     path('', views.MainKr, name='MainKr'),   # 한국어
     path('en', views.MainEn, name='MainEn'), # 영어
 ]

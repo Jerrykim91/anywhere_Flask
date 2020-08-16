@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<!-- head  -->
+
+<head>
+    <title>{{PageName}} | {{test}}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" sype="text/css" href="../static/assets/css/main.css" />
+    <script src="../static/assets/css/loading.css"></script>
+    <script src="../static/assets/js/loading.js"></script>
+    <style>
+        @import url(cssfile.css) screen and (min-width: 152px) and (max-width: 1024px);
+    </style>
+</head>
+
+<body>
+    <div class="container-md" style="width: 100%">
+
+        <!-- <h1>잊어라</h1> -->
+        <div class="container-md pt-5">
+            <!-- <button class="btn btn-dark btn-lg " type="submit" >입장하기</button> -->
+            {% if not request.user.is_authenticated %}
+
+            <!-- <a href='member/sign_in' class="btn btn- alert-light btn-lg " role="button">입장하기</a> -->
+            <!-- <a href='service/camera' class="btn btn- alert-light btn-lg " role="button">카메라촬영</a> -->
+            <!-- <a href="member/sign_up"><img src="../static/img/a.PNG"/></a> -->
+            <p> 안녕하세요. 방문자님</p>
+            
+            <p> {{PageName}}은 공사중인 관계로 추후에 방문해 주세요. </p>
+            <a href="/"><img src="../static/images/loading.gif" /></a>
+
+
+            {% else %}
+            <br>
+            <br>
+            <p> 반갑습니다. {{request.user.name}}님</p>
+            <hr />
+            아이디 정보 : {{request.user.username}} <br />
+            이름 정보 : {{request.user.name}} <br />
+            <!-- 선호 맛   : {{request.user.j_taste}} <br/> -->
+            <!-- <p><a href="member/sign_out"> 로그아웃 </a></p> -->
+
+
+            <hr />
+
+            {% endif %}
+
+        </div>
+        </form>
+</body>
+
+</html>
