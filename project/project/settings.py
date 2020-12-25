@@ -23,6 +23,8 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 pth = '/home/jerrykim91/'
+# pth ='Z:\\'
+
 
 with open(pth + 'secret.json', 'r') as f:
     secret = json.loads(f.read())
@@ -56,6 +58,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 'blog'
     # MainField,
 ]
 
