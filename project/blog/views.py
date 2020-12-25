@@ -46,7 +46,7 @@ https://mdbootstrap.com/freebies/
 
 
 
-@csrf_exempt
+# @csrf_exempt
 def test(request):
     '''
     test - 글쓰기
@@ -55,7 +55,7 @@ def test(request):
         return render(request,'blog/test.html')
 
 
-@csrf_exempt
+# @csrf_exempt
 def blog(request):
     '''
     blog - blogs
@@ -66,7 +66,7 @@ def blog(request):
         return render(request,'blog/blog.html')
 
 
-@csrf_exempt
+# @csrf_exempt
 def posting(request):
     '''
     posting 
@@ -77,7 +77,7 @@ def posting(request):
         return render(request,'blog/blog-single.html')
 
 
-@csrf_exempt
+# @csrf_exempt
 def about_me(request):
     '''
     about_me - 나에 대해서 
@@ -86,7 +86,7 @@ def about_me(request):
         return render(request,'blog/about.html')
 
 
-@csrf_exempt
+# @csrf_exempt
 def main(request):
     '''
     main - 블로그 메인
