@@ -36,8 +36,11 @@ def GDP(request):
     GDP
     """
     if request.method == 'GET':
-        PageName='GDP'
-        return render(request,'Base.html', {"PageName":PageName}) 
+        return render(request,'blog/index.html')
+
+    # if request.method == 'GET':
+    #     PageName='GDP'
+    #     return render(request,'Base.html', {"PageName":PageName}) 
 
 
 def Vegetable(request):
