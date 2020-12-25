@@ -1,208 +1,226 @@
-/*
-	Paradigm Shift by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
-
 (function($) {
 
-	var	$window = $(window),
-		$body = $('body');
+	"use strict";
 
-	// Breakpoints.
-		breakpoints({
-			default:   ['1681px',   null       ],
-			xlarge:    ['1281px',   '1680px'   ],
-			large:     ['981px',    '1280px'   ],
-			medium:    ['737px',    '980px'    ],
-			small:     ['481px',    '736px'    ],
-			xsmall:    ['361px',    '480px'    ],
-			xxsmall:   [null,       '360px'    ]
+	$(window).stellar({
+    responsive: true,
+    parallaxBackgrounds: true,
+    parallaxElements: true,
+    horizontalScrolling: false,
+    hideDistantElements: false,
+    scrollProperty: 'scroll'
+  });
+
+
+	var fullHeight = function() {
+
+		$('.js-fullheight').css('height', $(window).height());
+		$(window).resize(function(){
+			$('.js-fullheight').css('height', $(window).height());
 		});
 
-	// Play initial animations on page load.
-		$window.on('load', function() {
-			window.setTimeout(function() {
-				$body.removeClass('is-preload');
-			}, 100);
+	};
+	fullHeight();
+
+	// loader
+	var loader = function() {
+		setTimeout(function() { 
+			if($('#ftco-loader').length > 0) {
+				$('#ftco-loader').removeClass('show');
+			}
+		}, 1);
+	};
+	loader();
+
+	var carousel = function() {
+		$('.carousel-testimony').owlCarousel({
+			center: true,
+			loop: true,
+			autoplay: true,
+			autoplaySpeed:2000,
+			items:1,
+			margin: 30,
+			stagePadding: 0,
+			nav: false,
+			navText: ['<span class="ion-ios-arrow-back">', '<span class="ion-ios-arrow-forward">'],
+			responsive:{
+				0:{
+					items: 1
+				},
+				600:{
+					items: 2
+				},
+				1000:{
+					items: 3
+				}
+			}
 		});
 
-	// Hack: Enable IE workarounds.
-		if (browser.name == 'ie')
-			$body.addClass('is-ie');
+	};
+	carousel();
 
-	// Mobile?
-		if (browser.mobile)
-			$body.addClass('is-mobile');
+	$('nav .dropdown').hover(function(){
+		var $this = $(this);
+		// 	 timer;
+		// clearTimeout(timer);
+		$this.addClass('show');
+		$this.find('> a').attr('aria-expanded', true);
+		// $this.find('.dropdown-menu').addClass('animated-fast fadeInUp show');
+		$this.find('.dropdown-menu').addClass('show');
+	}, function(){
+		var $this = $(this);
+			// timer;
+		// timer = setTimeout(function(){
+			$this.removeClass('show');
+			$this.find('> a').attr('aria-expanded', false);
+			// $this.find('.dropdown-menu').removeClass('animated-fast fadeInUp show');
+			$this.find('.dropdown-menu').removeClass('show');
+		// }, 100);
+	});
 
-	// Scrolly.
-		$('.scrolly')
-			.scrolly({
-				offset: 100
-			});
 
-	// Polyfill: Object fit.
-		if (!browser.canUse('object-fit')) {
+	$('#dropdown04').on('show.bs.dropdown', function () {
+	  console.log('show');
+	});
 
-			$('.image[data-position]').each(function() {
+	// scroll
+	var scrollWindow = function() {
+		$(window).scroll(function(){
+			var $w = $(this),
+					st = $w.scrollTop(),
+					navbar = $('.ftco_navbar'),
+					sd = $('.js-scroll-wrap');
 
-				var $this = $(this),
-					$img = $this.children('img');
+			if (st > 150) {
+				if ( !navbar.hasClass('scrolled') ) {
+					navbar.addClass('scrolled');	
+				}
+			} 
+			if (st < 150) {
+				if ( navbar.hasClass('scrolled') ) {
+					navbar.removeClass('scrolled sleep');
+				}
+			} 
+			if ( st > 350 ) {
+				if ( !navbar.hasClass('awake') ) {
+					navbar.addClass('awake');	
+				}
+				
+				if(sd.length > 0) {
+					sd.addClass('sleep');
+				}
+			}
+			if ( st < 350 ) {
+				if ( navbar.hasClass('awake') ) {
+					navbar.removeClass('awake');
+					navbar.addClass('sleep');
+				}
+				if(sd.length > 0) {
+					sd.removeClass('sleep');
+				}
+			}
+		});
+	};
+	scrollWindow();
 
-				// Apply img as background.
-					$this
-						.css('background-image', 'url("' + $img.attr('src') + '")')
-						.css('background-position', $this.data('position'))
-						.css('background-size', 'cover')
-						.css('background-repeat', 'no-repeat');
+	var counter = function() {
+		
+		$('#section-counter, .hero-wrap, .ftco-counter').waypoint( function( direction ) {
 
-				// Hide img.
-					$img
-						.css('opacity', '0');
+			if( direction === 'down' && !$(this.element).hasClass('ftco-animated') ) {
 
-			});
+				var comma_separator_number_step = $.animateNumber.numberStepFactories.separator(',')
+				$('.number').each(function(){
+					var $this = $(this),
+						num = $this.data('number');
+						console.log(num);
+					$this.animateNumber(
+					  {
+					    number: num,
+					    numberStep: comma_separator_number_step
+					  }, 7000
+					);
+				});
+				
+			}
 
-			$('.gallery > a').each(function() {
+		} , { offset: '95%' } );
 
-				var $this = $(this),
-					$img = $this.children('img');
+	}
+	counter();
 
-				// Apply img as background.
-					$this
-						.css('background-image', 'url("' + $img.attr('src') + '")')
-						.css('background-position', 'center')
-						.css('background-size', 'cover')
-						.css('background-repeat', 'no-repeat');
 
-				// Hide img.
-					$img
-						.css('opacity', '0');
+	var contentWayPoint = function() {
+		var i = 0;
+		$('.ftco-animate').waypoint( function( direction ) {
 
-			});
+			if( direction === 'down' && !$(this.element).hasClass('ftco-animated') ) {
+				
+				i++;
 
-		}
+				$(this.element).addClass('item-animate');
+				setTimeout(function(){
 
-	// Gallery.
-		$('.gallery')
-			.on('click', 'a', function(event) {
-
-				var $a = $(this),
-					$gallery = $a.parents('.gallery'),
-					$modal = $gallery.children('.modal'),
-					$modalImg = $modal.find('img'),
-					href = $a.attr('href');
-
-				// Not an image? Bail.
-					if (!href.match(/\.(jpg|gif|png|mp4)$/))
-						return;
-
-				// Prevent default.
-					event.preventDefault();
-					event.stopPropagation();
-
-				// Locked? Bail.
-					if ($modal[0]._locked)
-						return;
-
-				// Lock.
-					$modal[0]._locked = true;
-
-				// Set src.
-					$modalImg.attr('src', href);
-
-				// Set visible.
-					$modal.addClass('visible');
-
-				// Focus.
-					$modal.focus();
-
-				// Delay.
-					setTimeout(function() {
-
-						// Unlock.
-							$modal[0]._locked = false;
-
-					}, 600);
-
-			})
-			.on('click', '.modal', function(event) {
-
-				var $modal = $(this),
-					$modalImg = $modal.find('img');
-
-				// Locked? Bail.
-					if ($modal[0]._locked)
-						return;
-
-				// Already hidden? Bail.
-					if (!$modal.hasClass('visible'))
-						return;
-
-				// Stop propagation.
-					event.stopPropagation();
-
-				// Lock.
-					$modal[0]._locked = true;
-
-				// Clear visible, loaded.
-					$modal
-						.removeClass('loaded')
-
-				// Delay.
-					setTimeout(function() {
-
-						$modal
-							.removeClass('visible')
-
-						setTimeout(function() {
-
-							// Clear src.
-								$modalImg.attr('src', '');
-
-							// Unlock.
-								$modal[0]._locked = false;
-
-							// Focus.
-								$body.focus();
-
-						}, 475);
-
-					}, 125);
-
-			})
-			.on('keypress', '.modal', function(event) {
-
-				var $modal = $(this);
-
-				// Escape? Hide modal.
-					if (event.keyCode == 27)
-						$modal.trigger('click');
-
-			})
-			.on('mouseup mousedown mousemove', '.modal', function(event) {
-
-				// Stop propagation.
-					event.stopPropagation();
-
-			})
-			.prepend('<div class="modal" tabIndex="-1"><div class="inner"><img src="" /></div></div>')
-				.find('img')
-					.on('load', function(event) {
-
-						var $modalImg = $(this),
-							$modal = $modalImg.parents('.modal');
-
-						setTimeout(function() {
-
-							// No longer visible? Bail.
-								if (!$modal.hasClass('visible'))
-									return;
-
-							// Set loaded.
-								$modal.addClass('loaded');
-
-						}, 275);
-
+					$('body .ftco-animate.item-animate').each(function(k){
+						var el = $(this);
+						setTimeout( function () {
+							var effect = el.data('animate-effect');
+							if ( effect === 'fadeIn') {
+								el.addClass('fadeIn ftco-animated');
+							} else if ( effect === 'fadeInLeft') {
+								el.addClass('fadeInLeft ftco-animated');
+							} else if ( effect === 'fadeInRight') {
+								el.addClass('fadeInRight ftco-animated');
+							} else {
+								el.addClass('fadeInUp ftco-animated');
+							}
+							el.removeClass('item-animate');
+						},  k * 50, 'easeInOutExpo' );
 					});
+					
+				}, 100);
+				
+			}
+
+		} , { offset: '95%' } );
+	};
+	contentWayPoint();
+
+
+	
+	// magnific popup
+	$('.image-popup').magnificPopup({
+    type: 'image',
+    closeOnContentClick: true,
+    closeBtnInside: false,
+    fixedContentPos: true,
+    mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
+     gallery: {
+      enabled: true,
+      navigateByImgClick: true,
+      preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+    },
+    image: {
+      verticalFit: true
+    },
+    zoom: {
+      enabled: true,
+      duration: 300 // don't foget to change the duration also in CSS
+    }
+  });
+
+  $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
+    disableOn: 700,
+    type: 'iframe',
+    mainClass: 'mfp-fade',
+    removalDelay: 160,
+    preloader: false,
+
+    fixedContentPos: false
+  });
+
+  $('[data-toggle="popover"]').popover()
+	$('[data-toggle="tooltip"]').tooltip()
 
 })(jQuery);
+
