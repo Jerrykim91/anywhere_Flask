@@ -22,13 +22,13 @@ def MainKr(request):
         return render(request,'index_kr.html')
 
 
-@csrf_exempt
-def MainEn(request):
-    '''
-    MainEn - 영어
-    '''
-    if request.method == 'GET':
-        return render(request,'index_en.html')
+# @csrf_exempt
+# def MainEn(request):
+#     '''
+#     MainEn - 영어
+#     '''
+#     if request.method == 'GET':
+#         return render(request,'index_en.html')
 
 
 def GDP(request):
