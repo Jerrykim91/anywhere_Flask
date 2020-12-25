@@ -21,5 +21,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('Main/', include('MainField.urls')),
     path('', views.MainKr, name='MainKr'),   # 한국어
-    path('en', views.MainEn, name='MainEn'), # 영어
+    # path('en', views.MainEn, name='MainEn'), # 영어
+
+    # 진행중 
+    path('home/', include('blog.urls'), name='Home'), # blog
 ]
