@@ -18,11 +18,10 @@ from . import views
 # blog 
 urlpatterns = [
     
-    path('main', views.main, name ='main' ), # main
+    # path('main', views.main, name ='main' ), # main
     path('about', views.about_me, name ='about' ), # about
     path('blog', views.blog, name ='blog' ), # blog
     path('post', views.posting, name ='post' ), # post
-
     path('test', views.test, name ='test' ), # test
 
 ]
