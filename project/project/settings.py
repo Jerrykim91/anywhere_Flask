@@ -59,7 +59,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
-    'fontawesome-free',
+    # 'fontawesome-free',
     # MainField,
 ]
 
