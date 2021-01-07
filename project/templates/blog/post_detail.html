@@ -1,0 +1,46 @@
+<!-- extends from base.html -->
+{% extends 'blog/base.html'%}
+
+<!-- title -->
+{% block title %}Post Detail{% endblock %}
+
+{% load static %}
+
+<!-- contents -->
+{% block content %}
+
+<h1>{{ object.title }}</h1>
+<br>
+
+<p>
+    {% if object.get_next %}
+    <a href=" {{object.get_next.get_absolute_url }}" title="View previous post">
+        <i class="fas fa-angle-double-left"></i>&nbsp;&nbsp;{{ object.get_next }}
+    </a>
+    {% endif %}
+
+    &nbsp;
+
+    {% if object.get_previous %}
+    | &nbsp; <a href=" {{ object.get_previous.get_absolute_url }}" title="View next post">{{ object.get_previous }}&nbsp;&nbsp;<i
+            class="fas fa-angle-double-right"></i></a>
+    {% endif %}
+</p>
+
+<p class="date">
+    {{ object.modify_dt|date:'j F Y' }}
+</p>
+
+<div class="body">
+    {{ object.content|linebreaks }}
+</div>
+
+{% endblock %}
+
+{% block footer%}
+<!-- <footer class="fixed-bottom bg-black">
+    <div class="text-black font-italic text-right mr-5"> Copyright &copy; by Jerry</div>
+</footer> -->
+{% endblock %}
+
+

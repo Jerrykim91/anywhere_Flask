@@ -1,0 +1,45 @@
+<!-- /blog/archive/URL요청에 대해 리스트를 날자별로 구분해서 보여줌 -->
+<!-- 디장고 존나 예민하네 띄워쓰기로 이렇게 에러난다고? 파이참으로 하면 달라질라나? -->
+
+
+<!-- extends from base.html -->
+{% extends 'blog/base.html'%}
+
+{% load static %}
+
+<!-- title -->
+{% block title %}Post List{% endblock %}
+
+<!-- contents -->
+{% block content %}
+
+<br>
+<h1>Post Archives for {{ day|date:'N d, Y' }}</h1>
+<ul>
+
+
+    <div>
+        <ul>
+            {% for post in object_list %}
+            <li class="h5">
+                {{ post.modify_dt|date:"Y-m-d" }}&nbsp;&nbsp;&nbsp;
+                <a href="{{ post.get_absolute_url }}"><strong>{{ post.title }}</strong></a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    {% endblock %}
+
+    {% block footer%}
+    <footer class="fixed-bottom bg-black">
+        <div class="text-black font-italic text-right mr-5"> Copyright &copy; by Jerry</div>
+    </footer>
+    {% endblock %}
+
+
+    {% block footer%}
+<footer class="fixed-bottom bg-black">
+    <div class="text-black font-italic text-right mr-5"> Copyright &copy; by Jerry</div>
+</footer>
+{% endblock %}

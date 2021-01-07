@@ -15,16 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from MainField import views
-from blog import views
+from blog.views import HomeView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('Main/', include('MainField.urls')),
-    # path('', views.MainKr, name='MainKr'),   # 한국어
-    # path('en', views.MainEn, name='MainEn'), # 영어
-
-    # 진행중 
-    path('home/', include('blog.urls'), name='Home'), # blog
-    path('', views.main, name='main'),   # blog
+    # 커스텀
+    path('', HomeView.as_view(), name='home'),
+    path('blog/', include('blog.urls')), # blog
+    
 ]
