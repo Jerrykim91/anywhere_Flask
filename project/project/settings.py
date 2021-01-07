@@ -166,3 +166,9 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # MEDIA_URL = '/files/' # 업로드 할 경로
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'files')
+
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
