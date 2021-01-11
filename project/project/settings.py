@@ -172,3 +172,17 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
+
+
+# TAG
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT= os.path.join(BASE_DIR, 'media')
+
+TAGGIT_CASE_INSENSITIVE= True
+TAGGIT_LIMIT = 50 
+
+# 뎃글
+
+DISQUS_SHORTNAME = " http-jerrykim91-pythonanywhere-com "
+DISQUS_MY_DOMAIN = 'https://jerrykim91.pythonanywhere.com/'

@@ -1,222 +1,210 @@
-<!doctype html>
+<!DOCTYPE HTML>
+<!--
+	Iridium by TEMPLATED
+    templated.co @templatedco
+    Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
 <html lang="en">
 {% load static %}
+<!-- head -->
 
 <head>
     <!-- title -->
-    <title>{% block title %} Jerry's BLOG {% endblock %}</title>
-
+    <title>{% block title %} Jerry's MELOG {% endblock %}</title>
 
     <!-- style -->
-    {% block extra-style %}
-
-    <!-- meta -->
-    <meta charset="utf-8">
+    {% block extra-style %} {% endblock %}
+    <!-- <meta http-equiv="content-type" content="text/html; charset=utf-8" /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link href='http://fonts.googleapis.com/css?family=Arimo:400,700' rel='stylesheet' type='text/css'>
+    <!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
 
-    <!-- link -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="{% static 'js/skel.min.js' %}"></script>
+    <script src="{% static 'js/skel-panels.min.js' %}"></script>
+    <script src="{% static 'js/init.js' %}"></script>
 
-    <!-- css -->
-    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/owl.carousel.min.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/owl.theme.default.min.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/flaticon.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
 
-    {% endblock %}
+    <link rel="stylesheet" href="{% static 'css/skel-noscript.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style-desktop.css' %}">
+
+    <!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+    <!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
 </head>
 
-<body>
+<body class="homepage">
     <!-- https://html-color-codes.info/Korean/ -->
     <!-- personal info nav // 회원 관리 시스템을 여기에 삽입 -->
 
-    <div class="wrap">
+    <!-- Header -->
+    <div id="header">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6 d-flex align-items-center">
-                    <p class="mb-0 phone pl-md-2">
-                        <a href="#"><span class="fa fa-paper-plane mr-1"></span> youremail@email.com</a>
-                    </p>
-                </div>
-                <div class="col-md-6 d-flex justify-content-md-end">
-                    <div class="social-media">
-                        <p class="mb-0 d-flex">
-                            <a href="#" class="d-flex align-items-center justify-content-center"><span
-                                    class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
-                            <a href="#" class="d-flex align-items-center justify-content-center"><span
-                                    class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
-                            <a href="#" class="d-flex align-items-center justify-content-center"><span
-                                    class="fa fa-github"><i class="sr-only">GitHub</i></span></a>
-                        </p>
-                    </div>
-                </div>
+
+            <!-- Logo -->
+            <div id="logo">
+                <h1><a href="{% url 'home' %}">JERRY</a></h1>
+                <span>Jerry's MELOG</span>
             </div>
+
+            <!-- Nav -->
+            <nav id="nav">
+                <ul>
+                    <li class="active"><a href="{% url 'home' %}">Homepage</a></li>
+                    <li><a href="#">AboutMe</a></li>
+                    <li><a href="{% url 'blog:index' %}">MELOG</a></li>
+                    <li><a href="{% url 'blog:post_archive' %}">Archive</a></li>
+                    <li><a href="#">Photo</a></li>
+                    <li><a href="#">Search</a></li>
+                    <li><a href="{% url 'admin:index' %}">Admin</a></li>
+                </ul>
+            </nav>
         </div>
     </div>
-
-    <!-- nav -->
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-        <div class="container">
-            <a class="navbar-brand" href="{% url 'home' %}">Jerry's BLOG</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
-                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="oi oi-menu"></span> Menu
-            </button>
-
-            <div class="collapse navbar-collapse" id="ftco-nav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
-                    </li>
-                    <!-- <li class="nav-item active"><a href="main" class="nav-link">Home</a></li> -->
-                    <li class="nav-item"><a href="#" class="nav-link">AboutMe</a></li>
-                    <li class="nav-item"><a href="{% url 'blog:index' %}" class="nav-link">BLOG</a></li>
-                    <li class="nav-item"><a href="{% url 'admin:index' %}" class="nav-link">Admin</a></li>
-                    <li class="nav-item"><a href="{% url 'blog:post_archive' %}" class="nav-link">Archive</a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Util
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="{% url 'admin:index' %}">Admin</a></li>
-                            <li><a class="dropdown-item" href="{% url 'blog:post_archive' %}">Archive</a></li>
-                            <li><a class="dropdown-item" href="#">Test Posting</a></li>
-                            <li><a class="dropdown-item" href="#">Search</a></li>
-                        </ul>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- END nav -->
 
     <!-- contents -->
-    <div class="container bg-light">
-        {% block content %} {% endblock %}
+    {% block content %}
+    <!-- Main -->
+    <div id="main">
+        <div class="container">
+            <div class="row">
+
+                <!-- Content -->
+                <div id="content" class="8u skel-cell-important">
+                    <section>
+                        <header>
+                            <h2>Welcome to Iridium!</h2>
+                            <span class="byline">Integer sit amet pede vel arcu aliquet pretium</span>
+                        </header>
+                        <a href="#" class="image full"><img src="{% static 'images/pic07.jpg' %} " alt="" /></a>
+                        <p>This is <strong>Iridium</strong>, a responsive HTML5 site template freebie by <a
+                                href="http://templated.co">TEMPLATED</a>. Released for free under the <a
+                                href="http://templated.co/license">Creative Commons Attribution</a> license, so use it
+                            for whatever (personal or commercial) &ndash; just give us credit! Check out more of our
+                            stuff at <a href="http://templated.co">our site</a> or follow us on <a
+                                href="http://twitter.com/templatedco">Twitter</a>.</p>
+                        <p>Sed etiam vestibulum velit, euismod lacinia quam nisl id lorem. Quisque erat. Vestibulum
+                            pellentesque, justo mollis pretium suscipit, justo nulla blandit libero, in blandit augue
+                            justo quis nisl. Fusce mattis viverra elit. Fusce quis tortor. Consectetuer adipiscing elit.
+                            Nam pede erat, porta eu, lobortis eget lorem ipsum dolor.</p>
+                    </section>
+                </div>
+                <!-- Sidebar -->
+                <div id="sidebar" class="4u">
+                    <section>
+                        <header>
+                            <h2>Pellentesque vulputate</h2>
+                        </header>
+                        <ul class="style">
+                            <li>
+                                <p class="posted">August 11, 2002 | (10 ) Comments</p>
+                                <img src="{% static 'images/pic04.jpg' %}" alt="" />
+                                <p class="text">Nullam non wisi a sem eleifend. Donec mattis libero eget urna.
+                                    Pellentesque viverra enim.</p>
+                            </li>
+                            <li>
+                                <p class="posted">August 11, 2002 | (10 ) Comments</p>
+                                <img src="{% static 'images/pic05.jpg' %}" alt="" />
+                                <p class="text">Nullam non wisi a sem eleifend. Donec mattis libero eget urna.
+                                    Pellentesque viverra enim.</p>
+                            </li>
+                            <li>
+                                <p class="posted">August 11, 2002 | (10 ) Comments</p>
+                                <img src="{% static 'images/pic06.jpg' %}" alt="" />
+                                <p class="text">Nullam non wisi a sem eleifend. Donec mattis libero eget urna.
+                                    Pellentesque viverra enim.</p>
+                            </li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!--footer start  -->
-    {% block footer%}   
-    <footer class="ftco-footer fixed-bottom">
+
+    <!-- featured -->
+    <div id="featured">
         <div class="container">
-            <div class="row mb-5">
-                <div class="col-sm-12 col-md">
-                    <div class="ftco-footer-widget mb-4">
-                        <h2 class="ftco-heading-2 logo"><a href="#">뭐?</a></h2>
-                        <p>Far far away, behind the word mountains, far from the countries.</p>
-                        <ul class="ftco-footer-social list-unstyled mt-2">
-                            <li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="fa fa-facebook"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="fa fa-instagram"></span></a></li>
-                        </ul>
-                    </div>
+            <div class="row">
+                <div class="4u">
+                    <h2>Aenean elementum facilisis</h2>
+                    <a href="#" class="image full"><img src="{% static 'images/pic01.jpg' %}" alt="" /></a>
+                    <p>Nullam non wisi a sem semper eleifend. Donec mattis libero eget urna. Donec leo, vivamus
+                        fermentum nibh in augue praesent a lacus at urna congue rutrum. Quisque dictum. Pellentesque
+                        viverra vulputate enim.</p>
+                    <p><a href="#" class="button">More Details</a></p>
                 </div>
-                <div class="col-sm-12 col-md">
-                    <div class="ftco-footer-widget mb-4 ml-md-4">
-                        <h2 class="ftco-heading-2">Explore</h2>
-                        <ul class="list-unstyled">
-                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>About</a></li>
-                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Contact</a></li>
-                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>What We Do</a></li>
-                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Plans &amp; Pricing</a></li>
-                        </ul>
-                    </div>
+                <div class="4u">
+                    <h2>Fusce ultrices fringilla</h2>
+                    <a href="#" class="image full"><img src="{% static 'images/pic02.jpg' %}" alt="" /></a>
+                    <p>Nullam non wisi a sem semper eleifend. Donec mattis libero eget urna. Donec leo, vivamus
+                        fermentum nibh in augue praesent a lacus at urna congue rutrum. Quisque dictum. Pellentesque
+                        viverra vulputate enim.</p>
+                    <p><a href="#" class="button">More Details</a></p>
                 </div>
-                <div class="col-sm-12 col-md">
-                    <div class="ftco-footer-widget mb-4 ml-md-4">
-                        <h2 class="ftco-heading-2">Legal</h2>
-                        <ul class="list-unstyled">
-                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Join us</a></li>
-                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Blog</a></li>
-                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Privacy &amp; Policy</a></li>
-                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Term &amp; Conditions</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md">
-                    <div class="ftco-footer-widget mb-4">
-                        <h2 class="ftco-heading-2">Company</h2>
-                        <ul class="list-unstyled">
-                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>About Us</a></li>
-                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Blog</a></li>
-                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Contact</a></li>
-                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Careers</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md">
-                    <div class="ftco-footer-widget mb-4">
-                        <h2 class="ftco-heading-2">Have a Questions?</h2>
-                        <div class="block-23 mb-3">
-                            <ul>
-                                <li><span class="icon fa fa-map marker"></span><span class="text">203 Fake St. Mountain
-                                        View, San Francisco, California, USA</span></li>
-                                <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+2 392 3929
-                                            210</span></a></li>
-                                <li><a href="#"><span class="icon fa fa-paper-plane pr-4"></span><span
-                                            class="text">info@yourdomain.com</span></a></li>
-                            </ul>
-                        </div>
-                    </div>
+                <div class="4u">
+                    <h2>Etiam rhoncus volutpat erat</h2>
+                    <a href="#" class="image full"><img src="{% static 'images/pic03.jpg' %}" alt="" /></a>
+                    <p>Nullam non wisi a sem semper eleifend. Donec mattis libero eget urna. Donec leo, vivamus
+                        fermentum nibh in augue praesent a lacus at urna congue rutrum. Quisque dictum. Pellentesque
+                        viverra vulputate enim.</p>
+                    <p><a href="#" class="button">More Details</a></p>
                 </div>
             </div>
         </div>
-        <div class="container-fluid px-0 py-5 bg-black">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <p class="mb-0" style="color: rgba(255,255,255,.5);">
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            Copyright &copy;
-                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This
-                            template is made with <i class="fa fa-heart color-danger" aria-hidden="true"></i> by <a
-                                href="https://colorlib.com" target="_blank">Colorlib.com</a>
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        </p>
-                    </div>
+    </div>
+
+    {% endblock %}
+
+    <!-- Footer -->
+    {% block footer%}
+    <div id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="4u">
+                    <section>
+                        <h2>Latest Posts</h2>
+                        <ul class="default">
+                            <li><a href="#">Pellentesque lectus gravida blandit</a></li>
+                            <li><a href="#">Lorem ipsum consectetuer adipiscing</a></li>
+                        </ul>
+                    </section>
+                </div>
+                <div class="4u">
+                    <section>
+                        <h2>Ultrices fringilla</h2>
+                        <ul class="default">
+                            <li><a href="#">Pellentesque lectus gravida blandit</a></li>
+                            <li><a href="#">Lorem ipsum consectetuer adipiscing</a></li>
+
+                        </ul>
+                    </section>
+                </div>
+                <div class="4u">
+                    <section>
+                        <h2>Aenean elementum</h2>
+                        <ul class="default">
+                            <li><a href="#">Pellentesque lectus gravida blandit</a></li>
+                            <li><a href="#">Lorem ipsum consectetuer adipiscing</a></li>
+                        </ul>
+                    </section>
                 </div>
             </div>
         </div>
-    </footer>
+    </div>
     {% endblock %}
 
-    <!-- loader -->
-    {% block extra-script %}
+    <!-- Copyright -->
+    <div id="copyright">
+        <div class="container">
+            Design: <a href="http://templated.co">TEMPLATED</a> Images: <a href="http://unsplash.com">Unsplash</a> (<a
+                href="http://unsplash.com/cc0">CC0</a>)
+        </div>
+    </div>
 
-    <!-- <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
-            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
-                stroke="#F96D00" />
-        </svg></div> -->
-
-    <!-- script  -->
-
-    <script src="{% static 'fontawesome_free/js/all.min.js' %}"></script>
-    
-    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
-    <script src="{% static 'assets/js/jquery-migrate-3.0.1.min.js' %}"></script>
-    <script src="{% static 'assets/js/popper.min.js' %}"></script>
-    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'assets/js/jquery.easing.1.3.js' %}"></script>
-    <script src="{% static 'assets/js/jquery.waypoints.min.js' %}"></script>
-    <script src="{% static 'assets/js/jquery.stellar.min.js' %}"></script>
-    <script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
-    <script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
-    <script src="{% static 'assets/js/jquery.animateNumber.min.js' %}"></script>
-    <script src="{% static 'assets/js/scrollax.min.js' %}"></script>
-    <script src="{% static 'assets/js/main.js' %}"></script>
-    <script src="{% static 'assets/js/google-map.js' %}"></script>
-
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-    {% endblock %}
 </body>
 
 </html>

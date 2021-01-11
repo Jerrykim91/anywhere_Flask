@@ -1,6 +1,6 @@
 from django.db import models
 from django.urls import reverse  # 빨간색 책 139page + 검색해보기 # URL 패턴을 만들어 주는 내장함수
-
+from taggit.managers import TaggableManager # 태그
 # Create your models here.
 
 """
@@ -15,12 +15,13 @@ $ python manage.py makemigrations blog
 
 class Post(models.Model):
 
-    title = models.CharField(verbose_name='TITLE', max_length=100)
-    slug = models.SlugField('SLUG', unique= True, allow_unicode= True, help_text='one world for title alias.') # 글의 별칭 -> 게시물검색  # 슬러그 자세한 내용은 -> 파란색 75page
-    description = models.CharField('DESCRIPTION', max_length=100,blank= True, help_text= 'simple description text.')
-    content = models.TextField('CONTENT')
-    create_dt = models.DateTimeField('CREATE DATE',auto_now_add=True) # 글 작성시간
-    modify_dt =  models.DateTimeField('MODIFY DATE',auto_now=True) # 글 수정 시간 
+    title        = models.CharField(verbose_name='TITLE', max_length=100)
+    slug         = models.SlugField('SLUG', unique= True, allow_unicode= True, help_text='one world for title alias.') # 글의 별칭 -> 게시물검색  # 슬러그 자세한 내용은 -> 파란색 75page
+    description  = models.CharField('DESCRIPTION', max_length=100,blank= True, help_text= 'simple description text.')
+    content      = models.TextField('CONTENT')
+    create_dt    = models.DateTimeField('CREATE DATE', auto_now_add=True) # 글 작성시간
+    modify_dt    = models.DateTimeField('MODIFY DATE', auto_now=True) # 글 수정 시간 
+    tags         = TaggableManager(blank=True)
 
     class Meta:
 

@@ -10,31 +10,33 @@
 
 <!-- contents -->
 {% block content %}
+<div id="main">
+    <div class="container">
+        <div id="content" class="8u skel-cell-important">
 
+            <br>
+            <h1>Post Archives for {{ year|date:'Y' }}</h1>
+            {% for date in date_list %}
 
+            <a href="{% url 'blog:post_month_archive' year|date:'Y' date|date:'b' %}"
+                class="btn btn-outline-success btn-sm mx-1">{{date|date:'F' }}</a>
+            {% endfor %}
 
-<br>
-<h1>Post Archives for {{ year|date:'Y' }}</h1>
-{% for date in date_list %}
+            <br><br>
 
-<a href="{% url 'blog:post_month_archive' year|date:'Y' date|date:'b' %}" class="btn btn-outline-success btn-sm mx-1">{{date|date:'F' }}</a>
-{% endfor %}
-
-
-<br><br>
-
-
-<div>
-    <ul>
-        {% for post in object_list %}
-        <li class="h5">
-            {{ post.modify_dt|date:"Y-m-d" }}&nbsp;&nbsp;&nbsp;
-            <a href="{{ post.get_absolute_url }}"><strong>{{ post.title }}</strong></a>
-        </li>
-        {% endfor %}
-    </ul>
+            <div>
+                <ul>
+                    {% for post in object_list %}
+                    <li class="h5">
+                        {{ post.modify_dt|date:"Y-m-d" }}&nbsp;&nbsp;&nbsp;
+                        <a href="{{ post.get_absolute_url }}"><strong>{{ post.title }}</strong></a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
-
 {% endblock %}
 
 {% block footer%}

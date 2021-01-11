@@ -1,0 +1,37 @@
+<!-- extends from base.html -->
+{% extends 'blog/base.html'%}
+
+<!-- title -->
+{% block title %}TagCloud{% endblock %}
+
+{% load static %}
+
+<!-- contents -->
+{% block content %}
+<div id="main">
+   <div class="container">
+      <div id="content" class="8u skel-cell-important">
+
+         <h1>Blog Tag Cloud</h1>
+         <br>
+
+         <div>
+            {% load taggit_templatetags2_tags %}
+            {% get_tagcloud as tags %}
+            {% for tag in tags %}
+            <span>
+               <a href="{% url 'blog:tagged_object_list' tag.name %}">{{tag.name}}({{tag.num_times}})</a>
+            </span>
+            {% endfor %}
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock %}
+
+
+{% block footer%}
+<footer class="fixed-bottom bg-black">
+    <div class="text-black font-italic text-right mr-5"> Copyright &copy; by Jerry</div>
+</footer>
+{% endblock %}

@@ -4,8 +4,51 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+<div id="main">
+    <div class="container">
+        <div class="row">
 
-<a>뭐가 중한디</a>
+            <!-- Content -->
+            <div id="content" class="8u skel-cell-important">
+                <section>
+                    <header>
+                        <h2> JERRY's MELOG </h2>
+                        <span class="byline">Wellcome ;) '열심히 블로그 만드는 즁' </span>
+                    </header>
+                    <a href="#" class="image full"><img src="{% static 'images/pic07.jpg' %} " alt="" /></a>
+                    <p>안녕하세요. <strong>JERRY</strong>입니다. 이 사이트의 템플릿은 <a href="http://templated.co">TEMPLATED</a>에서
+                        가지고 왔습니다.</p>
+                    <!-- <p> 열심히 블로그 만드는 즁</p> -->
+                </section>
+            </div>
+            <!-- Sidebar -->
+            <div id="sidebar" class="4u">
+                <section>
+                    <header>
+                        <h2> LIST </h2>
+                    </header>
+                    <ul class="style">
+                        <li>
+                            <p class="posted">August 11, 2002 | (10 ) Comments</p>
+                            <img src="{% static 'images/pic04.jpg' %}" alt="" />
+                            <p class="text">1번.</p>
+                        </li>
+                        <li>
+                            <p class="posted">August 11, 2002 | (10 ) Comments</p>
+                            <img src="{% static 'images/pic05.jpg' %}" alt="" />
+                            <p class="text">2번</p>
+                        </li>
+                        <li>
+                            <p class="posted">August 11, 2002 | (10 ) Comments</p>
+                            <img src="{% static 'images/pic06.jpg' %}" alt="" />
+                            <p class="text">3번</p>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
 

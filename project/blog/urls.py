@@ -17,4 +17,9 @@ urlpatterns = [
     path('archive/<int:year>/<str:month>/', views.PostMAV.as_view(), name='post_month_archive'), # /blog/archive/2020/Dec
     path('archive/<int:year>/<str:month>/<int:day>/', views.PostDAV.as_view(), name='post_day_archive'), # /blog/archive/2020/Dec/28
     path('archive/today/', views.PostTAV.as_view(), name='post_today_archive'), # /blog/archive/today/
+
+    # TAG
+    path('tag/', views.TagCloudTV.as_view(), name='tag_cloud'), # /blog/tag/
+    path('tag/<str:tag>/', views.TaggedObjectLV.as_view(), name='tagged_object_list'), # /blog/tag/tagname/
+
 ]

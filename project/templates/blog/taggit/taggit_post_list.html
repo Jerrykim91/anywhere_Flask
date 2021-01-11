@@ -1,0 +1,36 @@
+<!-- extends from base.html -->
+{% extends 'blog/base.html'%}
+
+<!-- title -->
+{% block title %}TagPostList{% endblock %}
+
+{% load static %}
+
+<!-- contents -->
+{% block content %}
+<div id="main">
+   <div class="container">
+      <div id="content" class="8u skel-cell-important">
+
+         <h1>Posts for Tag - {{ tagname }}</h1>
+         <br>
+
+         {% for post in object_list %}
+
+         <h2><a href="{{ post.get_absolute_url}}">{{post.title}}</a></h2>
+         {{post.modify_dt|date:'N d, Y'}}
+         <p>{{post.description}}</p>
+
+         {% endfor %}
+
+      </div>
+   </div>
+</div>
+{% endblock %}
+
+
+{% block footer%}
+<footer class="fixed-bottom bg-black">
+    <div class="text-black font-italic text-right mr-5"> Copyright &copy; by Jerry</div>
+</footer>
+{% endblock %}
