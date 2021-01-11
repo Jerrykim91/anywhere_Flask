@@ -59,6 +59,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'disqus',
+    'django.contrib.sites',
     'fontawesome-free',
     'taggit.apps.TaggitAppConfig',
     'taggit_templatetags2',
