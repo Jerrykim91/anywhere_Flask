@@ -51,15 +51,15 @@
                         &emsp;
 
                         <a href="{% url 'blog:tag_cloud' %}"><span class="btn btn-success btn-sm">TagCloud</span></a>
-                        
-                </section>
 
+                </section>
+<div id="disqus_thread"></div>
             </div>
         </div>
     </div>
 </div>
 </div>
-<div id="disqus_thread"></div>
+
 {% endblock %}
 
 {% block footer%}
@@ -82,7 +82,7 @@
     this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
     */
-    var disdus_config = function(){
+    var disqus_config = function(){
         this.page.identifier = '{{ disqus_id }}';
         this.page.url        = '{{ disqus_url }}';
         this.page.title      = '{{ disqus_title }}';

@@ -5,9 +5,9 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseNotFound
 from django.views.decorators.csrf import csrf_exempt
 
-# 로그인 
+# 로그인
 
-from django.contrib.auth.decorators import login_required 
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate as auth
 from django.contrib.auth import login as login
 from django.contrib.auth import logout as logout
@@ -55,7 +55,8 @@ class PostDV(DetailView):
         """
         context = super().get_context_data(**kwargs)
         context['disqus_short'] = f"{settings.DISQUS_SHORTNAME}"
-        context['disqus_id'] = f"post-{self.object.id}-{self.object.get_absolute_url()}"
+        context['disqus_id'] = f"post-{self.object.id}-{self.object.slug}"
+        context['disqus_url'] = f"{settings.DISQUS_MY_DOMAIN}{self.object.get_absolute_url()}" #ex)http://127.0.0.1:8000/blog/post/99
         context['disqus_title'] = f"{self.object.slug}"
         return context
 
@@ -124,7 +125,7 @@ class TaggedObjectLV(ListView):
         """
         docstring
         """
-        context = super().get_context_data(**kwargs)    
+        context = super().get_context_data(**kwargs)
         context['tagname'] = self.kwargs['tag']
         return context
 
@@ -136,13 +137,13 @@ https://velog.io/@hwang-eunji/django-views-%ED%95%A8%EC%88%98%ED%98%95-vs-%ED%81
 # db
 # from django.db import connection
 # cursor = connection.cursor()
-# from .models import join # 모델 호출 
+# from .models import join # 모델 호출
 # User = get_user_model() # 변수 선언
 
 # Create your views here.
 
 # context = {
-#         "PageName":PageName, 
+#         "PageName":PageName,
 #         'test':' 테스트 - 한국어'
 #         }
 
@@ -161,7 +162,7 @@ https://velog.io/@hwang-eunji/django-views-%ED%95%A8%EC%88%98%ED%98%95-vs-%ED%81
 #     '''
 #     blog - blogs
 #     post -> blog single
-#     # 여기서부터 골머리 시작 
+#     # 여기서부터 골머리 시작
 #     '''
 #     if request.method == 'GET':
 #         return render(request,'blog/blog.html')
@@ -170,9 +171,9 @@ https://velog.io/@hwang-eunji/django-views-%ED%95%A8%EC%88%98%ED%98%95-vs-%ED%81
 # # @csrf_exempt
 # def posting(request):
 #     '''
-#     posting 
+#     posting
 #     post -> blog single
-#     # 여기서부터 골머리 시작 
+#     # 여기서부터 골머리 시작
 #     '''
 #     if request.method == 'GET':
 #         return render(request,'blog/blog-single.html')
@@ -181,7 +182,7 @@ https://velog.io/@hwang-eunji/django-views-%ED%95%A8%EC%88%98%ED%98%95-vs-%ED%81
 # # @csrf_exempt
 # def about_me(request):
 #     '''
-#     about_me - 나에 대해서 
+#     about_me - 나에 대해서
 #     '''
 #     if request.method == 'GET':
 #         return render(request,'blog/about.html')
@@ -210,7 +211,7 @@ https://velog.io/@hwang-eunji/django-views-%ED%95%A8%EC%88%98%ED%98%95-vs-%ED%81
 #     '''
 #     blog - blogs
 #     post -> blog single
-#     # 여기서부터 골머리 시작 
+#     # 여기서부터 골머리 시작
 #     '''
 #     if request.method == 'GET':
 #         PageName='blog'
@@ -220,9 +221,9 @@ https://velog.io/@hwang-eunji/django-views-%ED%95%A8%EC%88%98%ED%98%95-vs-%ED%81
 # @csrf_exempt
 # def posting(request):
 #     '''
-#     posting 
+#     posting
 #     post -> blog single
-#     # 여기서부터 골머리 시작 
+#     # 여기서부터 골머리 시작
 #     '''
 #     if request.method == 'GET':
 #         PageName='post'
@@ -232,11 +233,11 @@ https://velog.io/@hwang-eunji/django-views-%ED%95%A8%EC%88%98%ED%98%95-vs-%ED%81
 # @csrf_exempt
 # def about_me(request):
 #     '''
-#     about_me - 나에 대해서 
+#     about_me - 나에 대해서
 #     '''
 #     if request.method == 'GET':
 #         PageName='about'
-       
+
 #         return render(request,'blog/about.html',{"PageName":PageName})
 
 
