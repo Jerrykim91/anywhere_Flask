@@ -6,49 +6,64 @@
 {% block title %}Post_all{% endblock %}
 
 
-
 <!-- contents -->
 {% block content %}
+
 <div id="main">
-    <div class="container">
-        <div class="row">
-            <div id="content" class="12u skel-cell-important">
-                <section >
-                    <br>
-                    <h1>Bolg test</h1>
-                    <br>
 
-                    {% for post in posts %}
-
-                    <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
-                    {{ post.modify_dt|date:'N d, Y' }}
-
-                    <P>{{ post.description }}</P>
-
-                    {% endfor %}
-
-                    <br />
-
-                    {% if page_obj.has_previous %}
-                    <a href="?page={{ page_obj.previous_page_number }}">PreviousPage</a>
-                    {% endif %}
-
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-
-                    {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}">NextPage</a>
-                    {% endif %}
-                </section>
-            </div>
+    <!-- Post -->
+    <section class="post">
+        <header class="major">
+            <!-- <span class="date">{{ object.modify_dt|date:'j F Y' }}</span> // 오늘 날자 쓸수 있으면 좋겠다-->
+            <h2> POST LIST </h2>
+                    <!-- 다음글 -->
+        <div class="action">
+            <br />
+            {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}"><i class="fas fa-angle-double-left"></i>&nbsp;&nbsp;</a>
+            {% endif %}
+            &nbsp;
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+            &nbsp;
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i></a>
+            {% endif %}
         </div>
-    </div>
+        </header>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+
+                        <th>Date</th>
+                        <th>Title</th>
+                        <th>Description</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for post in posts %}
+                    <tr>
+                        <td>{{ post.modify_dt|date:'N d, Y' }}</td>
+                        <td><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></td>
+                        <td>{{ post.description }}</td>
+
+                        {% endfor %}
+                    </tr>
+
+                </tbody>
+
+                <!-- <tfoot>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td>100.00</td>
+                    </tr>
+                </tfoot> -->
+            </table>
+        </div>
+
+    </section>
 </div>
-{% endblock %}
 
-
-
-{% block footer%}
-<footer class="fixed-bottom bg-black">
-    <div class="text-black font-italic text-right mr-5"> Copyright &copy; by Jerry</div>
-</footer>
 {% endblock %}

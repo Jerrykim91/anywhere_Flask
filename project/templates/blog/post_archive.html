@@ -12,35 +12,52 @@
 
 <!-- contents -->
 {% block content %}
+
+
 <div id="main">
-    <div class="container">
-        <div id="content" class="8u skel-cell-important">
-            <br>
-            <h1>Post Archives until {% now "N d, Y" %}</h1>
-            <ul>
 
-                {% for date in date_list %}
-                 <a href="{% url 'blog:post_year_archive' date|date:'Y' %}"
-                    class="btn btn-outline-success btn-sm mx-1">Year - {{ date|date:'Y' }}</a>&nbsp;&nbsp;&nbsp;
-
-                {% endfor %}
-            </ul>
-        
-
-            <div>
-                <ul>
-                    {% for post in object_list %}
-                    <li class="h3">
-                        {{ post.modify_dt|date:"Y-m-d" }}&nbsp;&nbsp;
-                        <a href="{{ post.get_absolute_url }}"><strong>{{ post.title }}</strong></a>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-
+    <!-- Post -->
+    <section class="post">
+        <header class="major">
+            <!-- <span class="date">{{ object.modify_dt|date:'j F Y' }}</span> // 오늘 날자 쓸수 있으면 좋겠다-->
+            <h2> Post Archives until {% now "N d, Y" %} </h2>
+                    
+        <div class="action">
+            {% for date in date_list %}
+            <a href="{% url 'blog:post_year_archive' date|date:'Y' %}"
+               class="btn btn-outline-success btn-sm mx-1">Year - {{ date|date:'Y' }}</a>&nbsp;&nbsp;&nbsp;
+           {% endfor %}
         </div>
-    </div>
+        </header>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+
+                        <th>Date</th>
+                        <th>Title</th>
+                        <th>Description</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for post in object_list %}
+                    <tr>
+                        <td>{{ post.modify_dt|date:"Y-m-d" }}</td>
+                        <td><a href="{{ post.get_absolute_url }}"><strong>{{ post.title }}</strong></a></td>
+                        <td>{{ post.description }}</td>
+
+                        {% endfor %}
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+    </section>
 </div>
+
 {% endblock %}
 
 <!-- 요일 포함 -->
@@ -65,9 +82,3 @@
     </ul>
 </div> -->
 
-
-{% block footer%}
-<footer class="fixed-bottom bg-black">
-    <div class="text-black font-italic text-right mr-5"> Copyright &copy; by Jerry</div>
-</footer>
-{% endblock %}

@@ -187,6 +187,8 @@ TAGGIT_CASE_INSENSITIVE= True
 TAGGIT_LIMIT = 50
 
 # 뎃글
-
+# DISQUS_WEBSITE_SHORTNAME = "http-jerrykim91-pythonanywhere-com"
 DISQUS_SHORTNAME = "http-jerrykim91-pythonanywhere-com"
 DISQUS_MY_DOMAIN = 'https://jerrykim91.pythonanywhere.com/'
+
+SITE_ID = 1

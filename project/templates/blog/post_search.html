@@ -1,0 +1,60 @@
+<!-- extends from base.html -->
+{% extends 'blog/base.html'%}
+
+<!-- title -->
+{% block title %} Search {% endblock %}
+
+{% load static %}
+
+<!-- contents -->
+{% block content %}
+
+<div id="main">
+    <div class="container">
+        <form action="." method="POST" class="actions">
+            {% csrf_token %}
+            {{ form.as_table }}
+            <input type="submit" value="Submit" class="button-lg  primary">
+        </form>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if object_list %}
+                    {% for post in object_list %}
+                    <tr>
+                        <td>{{ post.modify_dt|date:'N d, Y' }}</td>
+                        <td>
+                            <p><a href="{{ post.get_absolute_url }}">{{post.title}}</a></p>
+                        </td>
+                        <td>{{ post.description }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% elif search_term %}
+                    <h2> Search Word (" {{ search_term }} ") Not Found !</h2>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block footer%}
+<!-- Copyright -->
+<div id="copyright">
+    <ul>
+        <li>&copy; Untitled</li>
+        <li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+    </ul>
+</div>
+{% endblock %}

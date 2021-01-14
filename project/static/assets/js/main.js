@@ -1,226 +1,258 @@
+/*
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+*/
+
 (function($) {
 
-	"use strict";
+	var	$window = $(window),
+		$body = $('body'),
+		$wrapper = $('#wrapper'),
+		$header = $('#header'),
+		$nav = $('#nav'),
+		$main = $('#main'),
+		$navPanelToggle, $navPanel, $navPanelInner;
 
-	$(window).stellar({
-    responsive: true,
-    parallaxBackgrounds: true,
-    parallaxElements: true,
-    horizontalScrolling: false,
-    hideDistantElements: false,
-    scrollProperty: 'scroll'
-  });
-
-
-	var fullHeight = function() {
-
-		$('.js-fullheight').css('height', $(window).height());
-		$(window).resize(function(){
-			$('.js-fullheight').css('height', $(window).height());
+	// Breakpoints.
+		breakpoints({
+			default:   ['1681px',   null       ],
+			xlarge:    ['1281px',   '1680px'   ],
+			large:     ['981px',    '1280px'   ],
+			medium:    ['737px',    '980px'    ],
+			small:     ['481px',    '736px'    ],
+			xsmall:    ['361px',    '480px'    ],
+			xxsmall:   [null,       '360px'    ]
 		});
 
-	};
-	fullHeight();
+	/**
+	 * Applies parallax scrolling to an element's background image.
+	 * @return {jQuery} jQuery object.
+	 */
+	$.fn._parallax = function(intensity) {
 
-	// loader
-	var loader = function() {
-		setTimeout(function() { 
-			if($('#ftco-loader').length > 0) {
-				$('#ftco-loader').removeClass('show');
-			}
-		}, 1);
-	};
-	loader();
+		var	$window = $(window),
+			$this = $(this);
 
-	var carousel = function() {
-		$('.carousel-testimony').owlCarousel({
-			center: true,
-			loop: true,
-			autoplay: true,
-			autoplaySpeed:2000,
-			items:1,
-			margin: 30,
-			stagePadding: 0,
-			nav: false,
-			navText: ['<span class="ion-ios-arrow-back">', '<span class="ion-ios-arrow-forward">'],
-			responsive:{
-				0:{
-					items: 1
-				},
-				600:{
-					items: 2
-				},
-				1000:{
-					items: 3
-				}
-			}
-		});
+		if (this.length == 0 || intensity === 0)
+			return $this;
 
-	};
-	carousel();
+		if (this.length > 1) {
 
-	$('nav .dropdown').hover(function(){
-		var $this = $(this);
-		// 	 timer;
-		// clearTimeout(timer);
-		$this.addClass('show');
-		$this.find('> a').attr('aria-expanded', true);
-		// $this.find('.dropdown-menu').addClass('animated-fast fadeInUp show');
-		$this.find('.dropdown-menu').addClass('show');
-	}, function(){
-		var $this = $(this);
-			// timer;
-		// timer = setTimeout(function(){
-			$this.removeClass('show');
-			$this.find('> a').attr('aria-expanded', false);
-			// $this.find('.dropdown-menu').removeClass('animated-fast fadeInUp show');
-			$this.find('.dropdown-menu').removeClass('show');
-		// }, 100);
-	});
+			for (var i=0; i < this.length; i++)
+				$(this[i])._parallax(intensity);
 
+			return $this;
 
-	$('#dropdown04').on('show.bs.dropdown', function () {
-	  console.log('show');
-	});
+		}
 
-	// scroll
-	var scrollWindow = function() {
-		$(window).scroll(function(){
-			var $w = $(this),
-					st = $w.scrollTop(),
-					navbar = $('.ftco_navbar'),
-					sd = $('.js-scroll-wrap');
+		if (!intensity)
+			intensity = 0.25;
 
-			if (st > 150) {
-				if ( !navbar.hasClass('scrolled') ) {
-					navbar.addClass('scrolled');	
-				}
-			} 
-			if (st < 150) {
-				if ( navbar.hasClass('scrolled') ) {
-					navbar.removeClass('scrolled sleep');
-				}
-			} 
-			if ( st > 350 ) {
-				if ( !navbar.hasClass('awake') ) {
-					navbar.addClass('awake');	
-				}
-				
-				if(sd.length > 0) {
-					sd.addClass('sleep');
-				}
-			}
-			if ( st < 350 ) {
-				if ( navbar.hasClass('awake') ) {
-					navbar.removeClass('awake');
-					navbar.addClass('sleep');
-				}
-				if(sd.length > 0) {
-					sd.removeClass('sleep');
-				}
-			}
-		});
-	};
-	scrollWindow();
+		$this.each(function() {
 
-	var counter = function() {
-		
-		$('#section-counter, .hero-wrap, .ftco-counter').waypoint( function( direction ) {
+			var $t = $(this),
+				$bg = $('<div class="bg"></div>').appendTo($t),
+				on, off;
 
-			if( direction === 'down' && !$(this.element).hasClass('ftco-animated') ) {
+			on = function() {
 
-				var comma_separator_number_step = $.animateNumber.numberStepFactories.separator(',')
-				$('.number').each(function(){
-					var $this = $(this),
-						num = $this.data('number');
-						console.log(num);
-					$this.animateNumber(
-					  {
-					    number: num,
-					    numberStep: comma_separator_number_step
-					  }, 7000
-					);
-				});
-				
-			}
+				$bg
+					.removeClass('fixed')
+					.css('transform', 'matrix(1,0,0,1,0,0)');
 
-		} , { offset: '95%' } );
+				$window
+					.on('scroll._parallax', function() {
 
-	}
-	counter();
+						var pos = parseInt($window.scrollTop()) - parseInt($t.position().top);
 
+						$bg.css('transform', 'matrix(1,0,0,1,0,' + (pos * intensity) + ')');
 
-	var contentWayPoint = function() {
-		var i = 0;
-		$('.ftco-animate').waypoint( function( direction ) {
-
-			if( direction === 'down' && !$(this.element).hasClass('ftco-animated') ) {
-				
-				i++;
-
-				$(this.element).addClass('item-animate');
-				setTimeout(function(){
-
-					$('body .ftco-animate.item-animate').each(function(k){
-						var el = $(this);
-						setTimeout( function () {
-							var effect = el.data('animate-effect');
-							if ( effect === 'fadeIn') {
-								el.addClass('fadeIn ftco-animated');
-							} else if ( effect === 'fadeInLeft') {
-								el.addClass('fadeInLeft ftco-animated');
-							} else if ( effect === 'fadeInRight') {
-								el.addClass('fadeInRight ftco-animated');
-							} else {
-								el.addClass('fadeInUp ftco-animated');
-							}
-							el.removeClass('item-animate');
-						},  k * 50, 'easeInOutExpo' );
 					});
-					
-				}, 100);
-				
-			}
 
-		} , { offset: '95%' } );
+			};
+
+			off = function() {
+
+				$bg
+					.addClass('fixed')
+					.css('transform', 'none');
+
+				$window
+					.off('scroll._parallax');
+
+			};
+
+			// Disable parallax on ..
+				if (browser.name == 'ie'			// IE
+				||	browser.name == 'edge'			// Edge
+				||	window.devicePixelRatio > 1		// Retina/HiDPI (= poor performance)
+				||	browser.mobile)					// Mobile devices
+					off();
+
+			// Enable everywhere else.
+				else {
+
+					breakpoints.on('>large', on);
+					breakpoints.on('<=large', off);
+
+				}
+
+		});
+
+		$window
+			.off('load._parallax resize._parallax')
+			.on('load._parallax resize._parallax', function() {
+				$window.trigger('scroll');
+			});
+
+		return $(this);
+
 	};
-	contentWayPoint();
 
+	// Play initial animations on page load.
+		$window.on('load', function() {
+			window.setTimeout(function() {
+				$body.removeClass('is-preload');
+			}, 100);
+		});
 
-	
-	// magnific popup
-	$('.image-popup').magnificPopup({
-    type: 'image',
-    closeOnContentClick: true,
-    closeBtnInside: false,
-    fixedContentPos: true,
-    mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
-     gallery: {
-      enabled: true,
-      navigateByImgClick: true,
-      preload: [0,1] // Will preload 0 - before current, and 1 after the current image
-    },
-    image: {
-      verticalFit: true
-    },
-    zoom: {
-      enabled: true,
-      duration: 300 // don't foget to change the duration also in CSS
-    }
-  });
+	// Scrolly.
+		$('.scrolly').scrolly();
 
-  $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
-    disableOn: 700,
-    type: 'iframe',
-    mainClass: 'mfp-fade',
-    removalDelay: 160,
-    preloader: false,
+	// Background.
+		$wrapper._parallax(0.925);
 
-    fixedContentPos: false
-  });
+	// Nav Panel.
 
-  $('[data-toggle="popover"]').popover()
-	$('[data-toggle="tooltip"]').tooltip()
+		// Toggle.
+			$navPanelToggle = $(
+				'<a href="#navPanel" id="navPanelToggle">Menu</a>'
+			)
+				.appendTo($wrapper);
+
+			// Change toggle styling once we've scrolled past the header.
+				$header.scrollex({
+					bottom: '5vh',
+					enter: function() {
+						$navPanelToggle.removeClass('alt');
+					},
+					leave: function() {
+						$navPanelToggle.addClass('alt');
+					}
+				});
+
+		// Panel.
+			$navPanel = $(
+				'<div id="navPanel">' +
+					'<nav>' +
+					'</nav>' +
+					'<a href="#navPanel" class="close"></a>' +
+				'</div>'
+			)
+				.appendTo($body)
+				.panel({
+					delay: 500,
+					hideOnClick: true,
+					hideOnSwipe: true,
+					resetScroll: true,
+					resetForms: true,
+					side: 'right',
+					target: $body,
+					visibleClass: 'is-navPanel-visible'
+				});
+
+			// Get inner.
+				$navPanelInner = $navPanel.children('nav');
+
+			// Move nav content on breakpoint change.
+				var $navContent = $nav.children();
+
+				breakpoints.on('>medium', function() {
+
+					// NavPanel -> Nav.
+						$navContent.appendTo($nav);
+
+					// Flip icon classes.
+						$nav.find('.icons, .icon')
+							.removeClass('alt');
+
+				});
+
+				breakpoints.on('<=medium', function() {
+
+					// Nav -> NavPanel.
+						$navContent.appendTo($navPanelInner);
+
+					// Flip icon classes.
+						$navPanelInner.find('.icons, .icon')
+							.addClass('alt');
+
+				});
+
+			// Hack: Disable transitions on WP.
+				if (browser.os == 'wp'
+				&&	browser.osVersion < 10)
+					$navPanel
+						.css('transition', 'none');
+
+	// Intro.
+		var $intro = $('#intro');
+
+		if ($intro.length > 0) {
+
+			// Hack: Fix flex min-height on IE.
+				if (browser.name == 'ie') {
+					$window.on('resize.ie-intro-fix', function() {
+
+						var h = $intro.height();
+
+						if (h > $window.height())
+							$intro.css('height', 'auto');
+						else
+							$intro.css('height', h);
+
+					}).trigger('resize.ie-intro-fix');
+				}
+
+			// Hide intro on scroll (> small).
+				breakpoints.on('>small', function() {
+
+					$main.unscrollex();
+
+					$main.scrollex({
+						mode: 'bottom',
+						top: '25vh',
+						bottom: '-50vh',
+						enter: function() {
+							$intro.addClass('hidden');
+						},
+						leave: function() {
+							$intro.removeClass('hidden');
+						}
+					});
+
+				});
+
+			// Hide intro on scroll (<= small).
+				breakpoints.on('<=small', function() {
+
+					$main.unscrollex();
+
+					$main.scrollex({
+						mode: 'middle',
+						top: '15vh',
+						bottom: '-15vh',
+						enter: function() {
+							$intro.addClass('hidden');
+						},
+						leave: function() {
+							$intro.removeClass('hidden');
+						}
+					});
+
+			});
+
+		}
 
 })(jQuery);
-
