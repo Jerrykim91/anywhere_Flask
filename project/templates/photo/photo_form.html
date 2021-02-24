@@ -1,0 +1,92 @@
+<!-- extends from base.html -->
+{% extends 'blog/base.html'%}
+
+<!-- title -->
+{% block title %}Photo Form{% endblock %}
+{% load widget_tweaks %}
+{% load static %}
+
+<!-- contents -->
+{% block content %}
+<section>
+    <header class="major">
+        <h4>Hi🖐️, {{ user }} 😉</h4>
+        <h1>You Can Change Create & Update photo.</h1>
+        <p>
+            <tr>
+                <th><i class="fa fa-edit"></i>&nbsp;&nbsp;<a href="{% url 'photo:album_change' %}">&nbsp;album_change
+                        &nbsp;</a></th>
+                <th><i class="fa fa-plus"></i>&nbsp;&nbsp;<a href="{% url 'photo:album_add' %}">&nbsp;album_add
+                        &nbsp;</a></th>
+                <th><i class="fa fa-edit"></i>&nbsp;&nbsp;<a href="{% url 'photo:photo_change' %}">&nbsp;photo_change
+                        &nbsp;</a></th>
+            </tr>
+        </p>
+
+        <hr style="margin: 0 0 20px 0;">
+
+        <!-- Errors -->
+        {% if not form.errors %}
+        <h3> This is a creation or update form for your photo. </h3>
+        {% else %}
+        <h4>Wrong! Please, correct the error(s) below. Please try again.</h4>
+        <!-- err txt -->
+        <div class="alert alert-danger five" role="alert" style="width: auto;">
+            {% for field in form %}
+                {% if field.errors %}
+                    <strong>{{ field.label }}</strong>
+                {{ field.errors }}
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+    </header>
+
+    <hr style="margin: 0 0 20px 0;">
+
+    <section class="content">
+        <!-- form tag -->
+        {% if form.is_multipart %}
+        <form enctype="multipart/form-data" action="" method='post'>
+        {% else %}
+            <form action="." method='post'>
+        {% endif %}
+        {% csrf_token %}
+                <!-- form -->
+                <div class="table-wrapper">
+                    {% if form.album.value == None %}
+                    
+                    <table class="alt">
+                        <tr>
+                            <td>{{ form.album.label_tag }}</td>
+                            <td>{{ form.album }} </td>
+                            {% else%}
+                            <td>{{ form.album.label_tag }}</td>
+                            <td>{{ form.album }}</td>
+                            {% endif %}
+                        </tr>
+                        <tr>
+                            <td>{{ form.title.label_tag }}</td>
+                            <td>{{ form.title }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ form.image.label_tag }}</td>
+                            <td>{{ form.image }}</td>
+                        </tr>
+
+                        <tr>
+                            <td>{{ form.description.label_tag }}</td>
+                            <td>{{ form.description }}</td>
+                        </tr>
+                    </table>
+                    <!-- input -->
+                    <br>
+                    <input type="submit" value="submit" />
+                </div>
+            </form>
+            <br />
+        </form>
+    </section>
+</section>
+
+{% endblock %}

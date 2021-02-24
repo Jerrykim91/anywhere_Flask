@@ -1,0 +1,58 @@
+<!-- extends from base.html -->
+{% extends 'blog/base.html'%}
+
+<!-- title -->
+{% block title %}photo Form{% endblock %}
+{% load widget_tweaks %}
+{% load static %}
+
+<!-- contents -->
+{% block content %}
+
+<section>
+    <header class="major">
+        <h4>Hi🖐️, {{ user }} 😉</h4>
+        <h1>You Can Change photo.</h1>
+        <p>
+        <tr>
+            <th><i class="fa fa-home"></i>&nbsp;&nbsp;<a href="{% url 'photo:album_list' %}">&nbsp;album_list &nbsp;</a></th>
+            <th><i class="fa fa-plus"></i>&nbsp;&nbsp;<a href="{% url 'photo:album_add' %}">&nbsp;album_add &nbsp;</a></th>
+            <th><i class="fa fa-plus"></i>&nbsp;&nbsp;<a href="{% url 'photo:photo_add' %}">&nbsp;photo_add &nbsp;</a></th>
+        </tr>
+        </p>
+
+    </header>
+
+    <hr style="margin: 0 0 20px 0;">
+
+    <!-- form tag -->
+    <section class="content">        
+        <div class="table-wrapper">
+            <table class="alt">
+                <thead>
+                    <tr>
+                        <th>ALBUM</th>
+                        <th>TITLE</th>
+                        <th>DESCRIPTION</th>
+                        <th>OWNER</th>
+                        <th>UPDATE & DELETE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in object_list %}
+                    <tr>
+                        <td>{{ item.album }}</td>
+                        <td>{{ item.title }}</td>
+                        <td>{{ item.description }}</td>
+                        <td>{{ item.owner }}</td>
+                        <td><a href="{% url 'photo:photo_update' item.id %}">Update</a> / <a href="{% url 'photo:photo_delete' item.id %}">Delete</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <br />
+    </section>
+    <hr style="margin: 0 0 20px 0;">
+</section>
+{% endblock %}

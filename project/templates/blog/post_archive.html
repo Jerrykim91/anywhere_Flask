@@ -8,16 +8,16 @@
 {% load static %}
 
 <!-- title -->
-{% block title %}Post archive{% endblock %}
+{% block title %}Blog{% endblock %}
 
 <!-- contents -->
 {% block content %}
 
 
-<div id="main">
+<section>
+    <header class="major">
 
     <!-- Post -->
-    <section class="post">
         <header class="major">
             <!-- <span class="date">{{ object.modify_dt|date:'j F Y' }}</span> // 오늘 날자 쓸수 있으면 좋겠다-->
             <h2> Post Archives until {% now "N d, Y" %} </h2>
@@ -34,7 +34,6 @@
             <table>
                 <thead>
                     <tr>
-
                         <th>Date</th>
                         <th>Title</th>
                         <th>Description</th>
@@ -56,7 +55,22 @@
         </div>
 
     </section>
-</div>
+    <!-- <footer>
+        <div class="pagination">
+            <a href="#" class="previous">Prev</a>
+            <a href="#" class="page active">1</a>
+            <a href="#" class="page">2</a>
+            <a href="#" class="page">3</a>
+            <span class="extra">&hellip;</span>
+            <a href="#" class="page">8</a>
+            <a href="#" class="page">9</a>
+            <a href="#" class="page">10</a>
+            <a href="#" class="next">Next</a>
+        </div>
+    </footer>  -->
+</section>
+
+
 
 {% endblock %}
 

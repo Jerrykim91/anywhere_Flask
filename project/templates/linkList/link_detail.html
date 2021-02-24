@@ -1,0 +1,51 @@
+<!-- extends from base.html -->
+{% extends 'blog/base.html'%}
+
+<!-- title -->
+{% block title %}Lnk Detail{% endblock %}
+
+{% load static %}
+
+<!-- contents -->
+{% block content %}
+
+<section>
+    <header class="major">
+        <h4>Hi🖐️, {{ user }} 😉</h4>
+        <h1>Link mark</h1>
+        
+        <p>
+        <tr>
+            <th><i class="fa fa-plus"></i>&nbsp;&nbsp;<a href="{% url 'linkList:add' %}">&nbsp;add &nbsp;</a></th>
+            <th><i class="fa fa-edit"></i>&nbsp;&nbsp;<a href="{% url 'linkList:change' %}">&nbsp;change &nbsp;</a></th>
+        </tr>
+        </p>
+    </header>
+    <hr style="margin: 0 0 20px 0;">
+
+        <div class="content">
+            <h2> 🖐️ {{ object.title }}</h2>
+            <p>URL : <a href="{{ object.url }}">{{ object.url }}</a></p>
+            <hr style="margin: 0 0 30px 0;">
+
+            <p> # CONTENT </p>
+            <p>{{ object.formatted_markdown|safe }}</p>
+
+            <br>
+        </div>
+        <hr style="margin: 0 0 20px 0;">
+
+        <!-- Tag system -->
+        <div>
+            <b>TAGS</b> <i class="fas fa-tag"></i>
+            {% load taggit_templatetags2_tags %}
+            {% get_tags_for_object object as "tags"%}
+            {% for tag in tags %}
+            <a href="{% url 'linkList:tagged_object_list' tag.name %}"># {{tag.name}}</a>
+            {% endfor %}
+            &emsp;
+            <a href="{% url 'linkList:tag_cloud' %}">TagCloud</a>
+        </div>
+        <br/>
+</section>
+{% endblock %}

@@ -1,0 +1,212 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="en">
+{% load static %}
+
+<!-- head -->
+
+<head>
+    <!-- title -->
+    <title>{% block title %} Jerry's Blog. {% endblock %}</title>
+
+    <!-- style -->
+    {% block extra-style %}
+    <!-- mata -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+    <!-- link -->
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link rel="stylesheet" href="{% static 'test/assets/css/main.css' %}" />
+    {% endblock %}
+</head>
+
+<!-- body -->
+
+<body class="is-preload">
+
+    <!-- Header -->
+    <header id="header">
+        <div class="inner">
+            <!-- 원형 이미지는 원본과 같은 크기여야함 // 배경은 이름하고 사이즈 동일   -->
+            <!-- bg : 1274 x 1274 //avatar : 123 x 123 (정사각이면됨) -->
+            <a href="#" class="image avatar"><img src="https://64.media.tumblr.com/7ede879c7b287a071491538917383dbd/tumblr_ovaja0Hjjq1sodbk6o1_1280.png" alt="" /></a>
+            <a href="{% url 'home' %}"><h1><strong>Jerrykim</strong></h1></a>
+            <br/>
+            <nav id="menu">
+            {% if user.is_authenticated %}
+                {% if user.get_username == 'jerrykim91' %}
+                    <ul>
+                        <li>
+                            <span class="opener">BOSS👑: {{user}}</span>
+                            <ul>
+                                {% comment %} <li><a href="{% url 'blog:post_about' %}">mystortys</a></li> {% endcomment %}
+                                <li><a href="{% url 'photo:index' %}">Photo</a></li>
+                                <li><a href="{% url 'blog:add_category' %}">add_category</a></li>
+
+                                {% comment %} 관리 {% endcomment %}
+                                <li><a href="{% url 'admin:index' %}"> &nbsp; - Admin</a></li>
+                                <li><a href="{% url 'register' %}"> &nbsp; - Register</a></li>
+                                <li><a href="{% url 'password_change' %}" title="Change Password"> &nbsp; - Change
+                                        Password</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                
+                {% endif %}
+            <br/>
+            <ul>
+                
+                <li><a href="{% url 'blog:post_list' %}">Posts</a></li>
+                <li><a href="{% url 'linkList:index' %}">LinkMark</a></li>
+                <li>
+                    <span class="opener">Get in touch</span>
+                    <ul class="icons">
+                        <li><a class="icon solid fa-envelope"> &nbsp;&nbsp; information@untitled.tld</a></li>
+                        <li><a class="icon solid fa-phone"> &nbsp; 임시 - 직장</a></li>
+                        <li><a class="icon solid fa-home"> &nbsp;임시 - 거주지</a></li>
+                    </ul>
+                </li>
+                <li><a href="{% url 'home' %}" class="icon solid fa fa-home"> &nbsp; Home</a></li>
+                <li><a href="{% url 'logout' %}" class="icon solid fas fa-sign-out-alt"> &nbsp; Logout</a></li>
+
+            </ul>
+            {% else %}
+            <ul>
+                <li><span class="opener">Visiter</span></li>
+                <li><a href="{% url 'login' %}" class="icon solid fa fa-user"> &nbsp; Login</a></li>
+            </ul>
+            {% endif %}
+            </nav>
+
+           
+
+            <!-- Footer -->
+            <footer id="footer">
+                <div class="inner">
+                    <ul class="icons">
+                        <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+                        <li><a href="https://github.com/jerrykim91" class="icon brands fa-github" target="_blank"><span
+                                    class="label">GitHub</span></a></li>
+                        <li><a href="#" class="icon brands fa-dribbble" target="_blank"><span
+                                    class="label">Dribbble</span></a></li>
+                        <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+                    </ul>
+                    <ul class="copyright">
+                        <li>&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com"
+                                target="_blank">Unsplash</a>. Design: <a href="https://html5up.net/strata"
+                                target="_blank">HTML5
+                                UP-strata</a>.</li>
+                    </ul>
+                </div>
+            </footer>
+        </div>
+    </header>
+
+    <!-- Main -->
+    <div id="main">
+
+        <section class="wrapper">
+            <div class="content">
+                <header>
+                    <span class="image fit"><img src="http://placehold.it/400x450" alt=""></span>
+                    {% comment %} style="width: 100%; height: auto;" {% endcomment %}
+                    <h1>Hi, I’m Jerry<br />
+                        Wellcome My Bolg.</h1>
+                    <p>A free and fully responsive site template</p>
+                </header>
+                <p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante
+                    interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet
+                    egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas.
+                    Pellentesque sapien ac quam. Lorem ipsum dolor sit nullam.</p>
+
+                <ul class="actions">
+                    <li><a href="{% url 'blog:post_about' %}" class="button big">See More</a></li>
+                </ul>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3 class="my-3">Interest😄</h3>
+                    <ul>
+                        <li> Data Analysis </li>
+                        <li> Data Visualization</li>
+                        <li> Machine Learning </li>
+                        <li> Deep Learning </li>
+                    </ul>
+                </div>
+                <div class="col-sm-6">
+                    <h3 class="my-3">Project Details</h3>
+                    <ul>
+                        <li>Lorem Ipsum</li>
+                        <li>Dolor Sit Amet</li>
+                        <li>Consectetur</li>
+                        <li>Adipiscing Elit</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+
+        <div>
+            <h2><i class="fas fa-laptop-code"></i> &nbsp; Skill</h2>
+
+            <ul class="actions">
+                <li><span class="btn btn-outline-dark btn-sm mx-1"># Python</a></li>
+                <li><span class="btn btn-outline-dark btn-sm mx-1">#kaggle</a></li>
+                <li><span class="btn btn-outline-dark btn-sm mx-1">#R-Project </a></li>
+            </ul>
+        </div>
+
+        <br />
+
+        <!-- Related Projects Row -->
+        <div>
+            <h2 class="my-4">Team Projects</h2>
+            <br />
+            <div class="card" style="width: 15rem; height:auto;">
+                <img src="http://placehold.it/250x250" alt="" style="width: 100%; height: auto;" class="card-img-top"
+                    alt="...">
+                <div class="card-body">
+                    <h3 class="card-title">Card title</h3>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                    <a href="#" class="button primary fit">read more</a>
+                </div>
+            </div>
+        </div>
+
+        <br />
+        <!-- <hr /> -->
+        <h2 class="my-4">solo Projects</h2>
+        <div class="card" style="width: 15rem; height:auto;">
+            <img src="http://placehold.it/250x250" alt="" style="width: 100%; height: auto;" class="card-img-top"
+                alt="...">
+            <div class="card-body">
+                <h3 class="card-title">Card title</h3>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                <a href="#" class="button primary fit">read more</a>
+            </div>
+        </div>
+
+    </div>
+    <br /><br /><br /><br /><br />
+
+    </div>
+
+
+    <!-- Scripts -->
+    <script src="{% static 'test/assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'test/assets/js/browser.min.js' %}"></script>
+    <script src="{% static 'test/assets/js/breakpoints.min.js' %}"></script>
+    <script src="{% static 'test/assets/js/util.js' %}"></script>
+    <script src="{% static 'test/assets/js/main.js' %}"></script>
+
+</body>
+
+</html>

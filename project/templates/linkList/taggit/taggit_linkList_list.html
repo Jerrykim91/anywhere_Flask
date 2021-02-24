@@ -1,0 +1,34 @@
+<!-- extends from base.html -->
+{% extends 'blog/base.html'%}
+
+<!-- title -->
+{% block title %}TagLinkMarkList{% endblock %}
+
+{% load static %}
+
+<!-- contents -->
+{% block content %}
+<section>
+    <header class="major">
+        <h4>Hi🖐️, {{ user }} 😉</h4>
+         <h1>LinkMark Cloud List</h1>      
+         <p>
+        <tr>
+            <th><i class="fa fa-home"></i>&nbsp;&nbsp;<a href="{% url 'home' %}">&nbsp;home &nbsp;</a></th>
+        </tr>
+        </p>
+    </header>
+        <hr style="margin: 0 0 20px 0;">
+         <h1>linkList for Tag - {{ tagname }}</h1>
+         <br> 
+         
+         {% for linkList in object_list %}
+
+         <h2><a href="{{ linkList.get_absolute_url}}">{{linkList.title}}</a></h2>
+         {{linkList.modify_dt|date:'N d, Y'}}
+         <p>{{linkList.description}}</p>
+         {% endfor %}
+      </div>
+   </div>
+</div>
+{% endblock %}

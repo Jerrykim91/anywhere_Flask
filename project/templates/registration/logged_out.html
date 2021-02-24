@@ -1,0 +1,30 @@
+{% extends 'blog/base.html'%}
+
+<!-- {% load static %} -->
+{% load widget_tweaks %}
+{% block title %} Logged Out {% endblock %}
+
+{% block content %}
+<section>
+    {% comment %} <header class="major"> {% endcomment %}
+    <article class="special" style="width: auto;">
+        <hr style="margin: 0 20px 20px 0;">
+        <br />
+
+        <ul class="icons">
+            <!-- icon 참조 : https://fontawesome.com/ -->
+            <!-- <li><a href="{% url 'home' %}" class="icon solid fas fa-home"><span class="label">Home</span></a></li> -->
+            <li><a href="{% url 'login' %}" class="icon solid fa fa-user"><span class="label">Login</span></a></li>
+        </ul>
+        <header class="major">
+            <h1> Logged Out </h1>
+            <br />
+            
+            <h4> Thank you for visiting this Blog Today,  Have a nice day!</h4>
+            <br />
+        </header>
+    </article>
+    <br />
+</section>
+    <hr style="margin: 0 20px 20px 0;">
+{% endblock %}

@@ -1,0 +1,30 @@
+<!-- extends from base.html -->
+{% extends 'blog/base.html'%}
+
+<!-- title -->
+{% block title %}403{% endblock %}
+<!-- load -->
+{% load widget_tweaks %}
+{% load static %}
+
+<!-- contents -->
+{% block content %}
+
+<section>
+<article class="special" style="width: auto;">
+    <header class="major">
+        <h1> Permission Denied (403) </h1>
+        <ul class="icons">
+            <!-- icon 참조 : https://fontawesome.com/ -->
+            <li><a href="{% url 'home' %}" class="icon solid fas fa-home"><span class="label">Home</span></a></li>
+            <li><a href="{% url 'login' %}" class="icon solid fa fa-user"><span class="label">Login</span></a></li>
+        </ul>
+    </header>
+    <section class="post">
+        <div class="alert alert-danger five" role="alert" style="width: auto%;">
+            {{ exception }}
+        </div>
+</article>
+    </section>
+
+{% endblock %}

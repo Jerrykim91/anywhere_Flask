@@ -1,0 +1,151 @@
+<!-- extends from base.html -->
+{% extends 'blog/base.html'%}
+
+<!-- title -->
+{% block title %}Link List{% endblock %}
+
+{% load static %}
+
+
+<!-- contents -->
+{% block content %}
+
+<section>
+    <header class="major">
+        <h4>Hi🖐️, {{ user }} 😉</h4>
+        <h1>LinkMark.</h1>
+        <p>
+        <tr>
+            <th><i class="fa fa-plus"></i>&nbsp;&nbsp;<a href="{% url 'linkList:add' %}">&nbsp;add &nbsp;</a></th>
+            <th><i class="fa fa-edit"></i>&nbsp;&nbsp;<a href="{% url 'linkList:change' %}">&nbsp;change &nbsp;</a></th>
+        </tr>
+        </p>
+    </header>
+
+    <section>
+        <!--input 란 만들기-->
+        <input placeholder="[dev- test] 이곳에 ctrl+v로 붙여넣기 " type="text">
+        <br />
+        <div class="row-center">
+            {% for item in object_list %}
+            <article class="col-4 col-4-xsmall work-item">
+            <div class="alt">
+                <h2>{{ item.title }} &nbsp;&nbsp; </h2>
+                <a href="{{ item.url }}" class="image fit thumb" target="_blank">
+                    <img src="{% static 'main/images/pic01.jpg' %}"  alt="[dev-test]" />
+                </a>
+                <br>
+                <p>{{ item.content }}</p>
+                <br>
+                <p><a href="{% url 'linkList:link_detail' item.id %}">Go.Detail</a></p>
+
+                <br>
+
+                <div>
+                    <p id="copyUrl" hidden>{{ item.url }}</p>
+                    {% comment %} 카피 안되서 임시  {% endcomment %}
+                    <input id='inputField' value="{{ item.url }}"  type="text" >
+                </div>
+                <br />
+                
+                <!--// 버튼 만들기-->
+                {% comment %} <ul class="actions fit">
+                    <li><a href="{{item.url}}" class="button primary fit" target="_blank"> See </a></li>
+                </ul> {% endcomment %}
+
+                <!-- Tag system -->
+                <div>
+                    <b>TAGS</b> <i class="fas fa-tag"></i>
+                    {% load taggit_templatetags2_tags %}
+                    {% get_tags_for_object item as "tags"%}
+                    {% for tag in tags %}
+                    <a href="{% url 'linkList:tagged_object_list' tag.name %}"> # {{tag.name}} </a>
+                    {% endfor %}
+                    &emsp;
+                    <a href="{% url 'linkList:tag_cloud' %}">TagCloud</a>
+                </div>
+                 </div>
+                <br />
+                <hr style="margin: 0 0 20px 0;">
+            </article>
+             <br />
+            
+            {% endfor %}
+    </section>
+
+     <!-- pagination // 가운데로!  -->
+     <footer >
+        <ul class="pagination">
+            <!-- Prev page setting -->
+            {% if page_obj.has_previous %}
+                <li><a href="?page={{ page_obj.previous_page_number }}" class="button">Prev</a></li>            
+            {% endif %}
+            <!--  main : page pagination   -->
+            {% for page_number in page_obj.paginator.page_range %}
+            <!-- pagination lv control  -->
+                {% if page_number >= page_obj.number|add:-5 and page_number <= page_obj.number|add:5 %}
+                <!-- page number match-->
+                    {% if page_number == page_obj.number %}
+                    <li><a class="page active" href="?page={{ page_number }}">{{ page_number }}</a></li>
+                    {% else %}
+                    <li><a class="page" href="?page={{ page_number }}">{{ page_number }}</a></li>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+   
+            <!-- next page setting -->
+            {% if page_obj.has_next %}
+            <!-- 마지막 page -->
+                <!-- <a href="?page={{ page_obj.paginator.num_pages }}" class="page">{{ page_obj.paginator.num_pages }}</a> -->
+                <!-- 바로 다음 page -->
+                <li><a href="?page={{ page_obj.next_page_number }}" class="button">Next</a></li>
+            {% endif %}
+        </ul>
+        <br/>
+    </footer>
+</section>
+{% endblock %}
+
+
+
+<!-- Scripts -->
+{% block extra_js %}
+<script>
+
+    function InputclipBoard() {
+        var txt = document.getElementById('inputField');
+        txt.select();
+        document.execCommand("copy");
+        alert("test: 복사에 성공 하였습니다.");
+    }
+
+	// 클립보드로 복사하는 기능을 생성
+	function clipBoard(elementId) {
+
+    // 글을 쓸 수 있는 란을 만든다.
+    var aux = document.createElement("input");
+    
+
+    // 지정된 요소의 값을 할당 한다.
+    aux.setAttribute("value", document.getElementById(elementId).innerHTML);
+
+    // body에 추가.
+    document.body.appendChild(aux);
+
+    // 지정된 내용을 강조한다.
+    aux.select();
+    
+    // 텍스트를 카피 하는 변수를 생성
+    document.execCommand("copy");
+
+    // body 로 부터 다시 반환 한다.
+    document.body.removeChild(aux);
+    //alert(aux.value);
+    alert("텍스트 복사에 성공 하였습니다.");
+    
+};
+
+
+</script>
+
+{% endblock %}

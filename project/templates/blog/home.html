@@ -1,173 +1,89 @@
 {% extends 'blog/base.html'%}
 
 {% load static %}
-{% block title %}Home{% endblock %}
+{% block title %}HELLO{% endblock %}
 
 {% block content %}
-<!-- Main -->
-<div id="main">
 
-    <!-- Featured Post -->
-    <article class="post featured">
-        <header class="major">
-            <span class="date">April 25, 2017</span>
-            <h2><a href="#">And this is a<br />
-                    massive headline</a></h2>
-            <p>Aenean ornare velit lacus varius enim ullamcorper proin aliquam<br />
-                facilisis ante sed etiam magna interdum congue. Lorem ipsum dolor<br />
-                amet nullam sed etiam veroeros.</p>
+
+<section>
+    <div class="content">
+        <header>
+            {% if  user.is_authenticated %}
+                <h1>Hi🖐️, {% firstof user.get_short_name user.get_username %}
+                {% else %}
+                <h1>Hi🖐️, Visiter
+            {% endif %}
+            <br>Wellcome My Bolg.</h1>
+            <span class="image fit"><img
+                    src="https://64.media.tumblr.com/5da981651a7128b32171f2b6a3efcb14/tumblr_p32oen6pot1sfyngeo4_1280.jpg"
+                    alt=""></span>
+            <p>A free and fully responsive site template</p>
         </header>
-        <a href="#" class="image main"><img src="{% static 'images/pic01.jpg' %}" alt="" /></a>
-        <ul class="actions special">
-            <li><a href="#" class="button large">Full Story</a></li>
+        <p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante
+            interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet
+            egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas.
+            Pellentesque sapien ac quam. Lorem ipsum dolor sit nullam.</p>
+
+        <ul class="actions">
+            <li><a href="{% url 'blog:post_about' %}" class="button big">See More</a></li>
         </ul>
-    </article>
-
-    <!-- Posts -->
-    <section class="posts">
-        <article>
-            <header>
-                <span class="date">April 24, 2017</span>
-                <h2><a href="#">Sed magna<br />
-                        ipsum faucibus</a></h2>
-            </header>
-            <a href="#" class="image fit"><img src="{% static 'images/pic02.jpg' %}" alt="" /></a>
-            <p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque
-                venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-            <ul class="actions special">
-                <li><a href="#" class="button">Full Story</a></li>
-            </ul>
-        </article>
-        <article>
-            <header>
-                <span class="date">April 22, 2017</span>
-                <h2><a href="#">Primis eget<br />
-                        imperdiet lorem</a></h2>
-            </header>
-            <a href="#" class="image fit"><img src="{% static 'images/pic03.jpg' %}" alt="" /></a>
-            <p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque
-                venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-            <ul class="actions special">
-                <li><a href="#" class="button">Full Story</a></li>
-            </ul>
-        </article>
-        <article>
-            <header>
-                <span class="date">April 18, 2017</span>
-                <h2><a href="#">Ante mattis<br />
-                        interdum dolor</a></h2>
-            </header>
-            <a href="#" class="image fit"><img src="{% static 'images/pic04.jpg' %}" alt="" /></a>
-            <p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque
-                venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-            <ul class="actions special">
-                <li><a href="#" class="button">Full Story</a></li>
-            </ul>
-        </article>
-        <article>
-            <header>
-                <span class="date">April 14, 2017</span>
-                <h2><a href="#">Tempus sed<br />
-                        nulla imperdiet</a></h2>
-            </header>
-            <a href="#" class="image fit"><img src="{% static 'images/pic05.jpg' %}" alt="" /></a>
-            <p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque
-                venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-            <ul class="actions special">
-                <li><a href="#" class="button">Full Story</a></li>
-            </ul>
-        </article>
-        <article>
-            <header>
-                <span class="date">April 11, 2017</span>
-                <h2><a href="#">Odio magna<br />
-                        sed consectetur</a></h2>
-            </header>
-            <a href="#" class="image fit"><img src="{% static 'images/pic06.jpg'%}" alt="" /></a>
-            <p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque
-                venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-            <ul class="actions special">
-                <li><a href="#" class="button">Full Story</a></li>
-            </ul>
-        </article>
-        <article>
-            <header>
-                <span class="date">April 7, 2017</span>
-                <h2><a href="#">Augue lorem<br />
-                        primis vestibulum</a></h2>
-            </header>
-            <a href="#" class="image fit"><img src="{% static 'images/pic07.jpg' %}" alt="" /></a>
-            <p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque
-                venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-            <ul class="actions special">
-                <li><a href="#" class="button">Full Story</a></li>
-            </ul>
-        </article>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="pagination">
-            <!--<a href="#" class="previous">Prev</a>-->
-            <a href="#" class="page active">1</a>
-            <a href="#" class="page">2</a>
-            <a href="#" class="page">3</a>
-            <span class="extra">&hellip;</span>
-            <a href="#" class="page">8</a>
-            <a href="#" class="page">9</a>
-            <a href="#" class="page">10</a>
-            <a href="#" class="next">Next</a>
-        </div>
-    </footer>
-
-</div>
-<!-- <div id="main">
-    <div class="container">
-        <div class="row">
-
-            <div id="content" class="8u skel-cell-important">
-                <section>
-                    <header>
-                        <h2> JERRY's MELOG </h2>
-                        <span class="byline">Wellcome ;) '열심히 블로그 만드는 즁' </span>
-                    </header>
-                    <a href="#" class="image full"><img src="{% static 'images/pic07.jpg' %} " alt="" /></a>
-                    <p>안녕하세요. <strong>JERRY</strong>입니다. 이 사이트의 템플릿은 <a href="http://templated.co">TEMPLATED</a>에서
-                        가지고 왔습니다.</p>
-                </section>
-            </div>
-            <div id="sidebar" class="4u">
-                <section>
-                    <header>
-                        <h2> LIST </h2>
-                    </header>
-                    <ul class="style">
-                        <li>
-                            <p class="posted">August 11, 2002 | (10 ) Comments</p>
-                            <img src="{% static 'images/pic04.jpg' %}" alt="" />
-                            <p class="text">1번.</p>
-                        </li>
-                        <li>
-                            <p class="posted">August 11, 2002 | (10 ) Comments</p>
-                            <img src="{% static 'images/pic05.jpg' %}" alt="" />
-                            <p class="text">2번</p>
-                        </li>
-                        <li>
-                            <p class="posted">August 11, 2002 | (10 ) Comments</p>
-                            <img src="{% static 'images/pic06.jpg' %}" alt="" />
-                            <p class="text">3번</p>
-                        </li>
-                    </ul>
-                </section>
-            </div>
-        </div>
     </div>
-</div> -->
+</section>
 
-{% endblock %}
 
-{% block footer%}
-<footer class="fixed-bottom bg-black">
-    <div class="text-black font-italic text-right mr-5"> Copyright &copy; by Jerry</div>
-</footer>
+<section id="two">
+    <header>
+        <h1>New Posts</h1>
+    </header>
+
+    <div class="row">
+        <article class="col-6 col-12-xsmall work-test">
+            <!--  full에세서 무작위 하나  // thumb은 메인  -->
+            <span class="image fit"><img src="https://images.unsplash.com/photo-1613807871118-9e983601b759?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1275&q=80" alt=""></span>
+            <p>Demo Images:<a href="https://unsplash.com">Unsplash</a>.</p>
+            <br>
+            <h3>어떻게 만들지?🤔</h3>
+            <p>디테일! 한글도 이쁘다!!</p>
+        </article>
+        <article class="col-6 col-12-xsmall work-test">
+            <!--  full 은 처음 // thumb은 메인  -->
+            <a href="#" class="image fit thumb"><img src="https://images.unsplash.com/photo-1613748247129-ba2a38d6fc5e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80" alt=""></a>
+            <p>Demo Images:<a href="https://unsplash.com">Unsplash</a>.</p>
+            <br>
+            <h3>어떻게 만들지?🤔</h3>
+            <ol>
+                <li>사진 크기 fix 해야겠다!</li>
+                <li>button fit이랑 전체적으로 타이트한거 여백주기 </li>
+                <li>폰트 변경확인해보고 변경해보기</li>
+                <li>네비바 고정하던지 같이 밀리던지 </li>
+                <li>br 마진 css 튜닝할것 ! </li>
+                <li>N/A</li>
+            </ol>
+            
+        </article>
+        <!-- <article class="col-6 col-12-xsmall work-item">
+            <a href="images/fulls/03.jpg" class="image fit thumb"><img src="images/thumbs/03.jpg" alt="" /></a>
+            <h3>Tortor metus commodo</h3>
+            <p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>
+        </article>
+        <article class="col-6 col-12-xsmall work-item">
+            <a href="images/fulls/04.jpg" class="image fit thumb"><img src="images/thumbs/04.jpg" alt="" /></a>
+            <h3>Quam neque phasellus</h3>
+            <p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>
+        </article>
+        <article class="col-6 col-12-xsmall work-item">
+            <a href="images/fulls/05.jpg" class="image fit thumb"><img src="images/thumbs/05.jpg" alt="" /></a>
+            <h3>Nunc enim commodo aliquet</h3>
+            <p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>
+        </article>
+        <article class="col-6 col-12-xsmall work-item">
+            <a href="images/fulls/06.jpg" class="image fit thumb"><img src="images/thumbs/06.jpg" alt="" /></a>
+            <h3>Risus ornare lacinia</h3>
+            <p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>
+        </article> -->
+    </div>
+</section>
+
+
 {% endblock %}

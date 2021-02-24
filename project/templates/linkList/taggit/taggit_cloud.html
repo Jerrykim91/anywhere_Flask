@@ -1,0 +1,41 @@
+<!-- extends from base.html -->
+{% extends 'blog/base.html'%}
+
+<!-- title -->
+{% block title %}TagCloud{% endblock %}
+
+{% load static %}
+
+<!-- contents -->
+{% block content %}
+<section>
+    <header class="major">
+        <h4>Hi🖐️, {{ user }} 😉</h4>
+         <h1>LinkMark Tag Cloud</h1>
+      <p>
+        <tr>
+            <th><i class="fa fa-home"></i>&nbsp;&nbsp;<a href="{% url 'home' %}">&nbsp;home &nbsp;</a></th>
+            <th><i class="fa fa-plus"></i>&nbsp;&nbsp;<a href="{% url 'linkList:add' %}">&nbsp;add &nbsp;</a></th>
+        </tr>
+        </p>
+    </header>
+        <hr style="margin: 0 0 20px 0;">
+
+         <br>
+
+         <div>
+         <p>tag- 변화가 필요 </p>
+            {% load taggit_templatetags2_tags %}
+            {% get_tagcloud as tags %}
+            {% for tag in tags %}
+
+            <span>
+               <a href="{% url 'linkList:tagged_object_list' tag.name %}"># {{tag.name}}({{tag.num_times}})</a>
+            </span>
+            <br>
+            {% endfor %}
+         </div>
+
+</section>
+{% endblock %}
+

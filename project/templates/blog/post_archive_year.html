@@ -10,37 +10,47 @@
 
 <!-- contents -->
 {% block content %}
-<div id="main">
-    <div class="container">
-        <div id="content" class="8u skel-cell-important">
 
-            <br>
-            <h1>Post Archives for {{ year|date:'Y' }}</h1>
-            {% for date in date_list %}
 
-            <a href="{% url 'blog:post_month_archive' year|date:'Y' date|date:'b' %}"
-                class="btn btn-outline-success btn-sm mx-1">{{date|date:'F' }}</a>
-            {% endfor %}
+<section>
+    <!-- Post -->
+    <section class="post">
+        <header class="major">
+            <h4>Hi🖐️, {{ user }} 😉</h4>
+            <!-- <span class="date">{{ object.modify_dt|date:'j F Y' }}</span> // 오늘 날자 쓸수 있으면 좋겠다-->
+            <h2> Post Archives for {{ year|date:'Y' }} -
+                {% for date in date_list %}
+                <a href="{% url 'blog:post_month_archive' year|date:'Y' date|date:'b' %}"
+                    class="btn btn-outline-success btn-sm mx-1">{{date|date:'F'}}</a>&nbsp;&nbsp;&nbsp;
+                {% endfor %}
+            </h2>
+        </header>
+        <br>
+        <hr style="margin: 0 20px 20px 0;">
 
-            <br><br>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
 
-            <div>
-                <ul>
+                        <th>Date</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
                     {% for post in object_list %}
-                    <li class="h5">
-                        {{ post.modify_dt|date:"Y-m-d" }}&nbsp;&nbsp;&nbsp;
-                        <a href="{{ post.get_absolute_url }}"><strong>{{ post.title }}</strong></a>
-                    </li>
+                    <tr>
+                        <td>{{ post.modify_dt|date:"Y-m-d" }}</td>
+                        <td><a href="{{ post.get_absolute_url }}"><strong>{{ post.title }}</strong></a></td>
+                        <td>{{ post.description }}</td>
+                    </tr>
                     {% endfor %}
-                </ul>
-            </div>
+                </tbody>
+            </table>
         </div>
-    </div>
-</div>
-{% endblock %}
+        <hr style="margin: 0 20px 20px 0;">
+    </section>
+</section>
 
-{% block footer%}
-<footer class="fixed-bottom bg-black">
-    <div class="text-black font-italic text-right mr-5"> Copyright &copy; by Jerry</div>
-</footer>
 {% endblock %}

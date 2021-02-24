@@ -1,0 +1,87 @@
+<!-- extends from base.html -->
+{% extends 'blog/base.html'%}
+
+
+<!-- title -->
+{% block title %}Photo_detail{% endblock %}
+{% load static %}
+
+<!-- contents -->
+{% block content %}
+
+<section>
+    <div class="content">
+        <header>
+            <h1> POSTs. </h1>
+            {% comment %} <span class="image fit"><img
+                    src="https://64.media.tumblr.com/5da981651a7128b32171f2b6a3efcb14/tumblr_p32oen6pot1sfyngeo4_1280.jpg"
+                    alt=""></span> {% endcomment %}
+            <p>리스트 </p>
+        </header>
+        <div>
+        Album__<h3><a href="{% url 'photo:album_detail' object.album.id %}">{{ object.album.name }}</a></h3>
+        <p><a href="{% url 'photo:album_change' %}"><i class="fas fa-edit">&nbsp;album_change &nbsp;</i></a>|<a href="{% url 'photo:album_add' %}"><i class="fa fa-plus">&nbsp;album_add &nbsp;</i></a>|<a href="{% url 'photo:photo_add' %}"><i class="fa fa-plus">&nbsp;photo_add &nbsp;</i></a>|<a href="{% url 'photo:photo_change' %}"><i class="fas fa-edit">&nbsp;photo_change &nbsp;</i></a></p>
+
+        </div>
+    </div>
+</section>
+
+
+<div class="content">
+        <header>
+            <h1 >{{ object.title }}</h1>
+            <hr class="mt-3" style="margin: 0 0 20px 0;">
+            <a href="{{ object.image.url }}"><span class="image fit"><img src="{{ object.image.url }}" alt=""></span></a>
+            <p>Demo Images:<a href="https://unsplash.com">Unsplash</a>.</p> 
+        </header>
+        {% comment %} 내용 {% endcomment %}
+        
+        <article>
+            {% comment %} <span class="icon fa-gem"></span> {% endcomment %}
+            <div>
+            {% for post in posts %}
+                <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+                <h3>Photo Description.</h3>
+                    {% if object.description %}
+                        <p>{{ object.description|linebreaks }}</p>
+                    {% else %}
+                        <p>(blank)</p>
+                    {% endif %}
+                <h4>Date Uploaded.</h4>
+                <p class="font-italic">{{ object.upload_dt }}</p>
+            {% endfor %}
+            </div>
+            {% comment %} <ul class="actions">
+                <li><a href="#" class="button">More🤔</a></li>
+            </ul> {% endcomment %}
+        </article>
+        
+
+    {% comment %} </div>
+
+        <!--  -->
+        <hr class="mt-3" style="margin: 0 0 20px 0;">
+
+        <div class="wrapper">
+            <div>
+                <a href="{{ object.image.url }}">
+                    <img class="three" src="{{ object.image.url }}" style=" height: 250px; width: 300px;">
+                </a>
+            </div>
+
+            <ul class="two">
+                <li class="h4">Photo Description.</li>
+                {% if object.description %}
+                    <p>{{ object.description|linebreaks }}</p>
+                {% else %}
+                    <p>(blank)</p>
+                {% endif %}
+                
+                <li class="h4">Date Uploaded.</li>
+                <p class="font-italic">{{ object.upload_dt }}</p>
+            </ul>
+        </div>
+    </section>
+</div> {% endcomment %}
+
+{% endblock %}

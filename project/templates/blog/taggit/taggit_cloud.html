@@ -8,30 +8,32 @@
 
 <!-- contents -->
 {% block content %}
-<div id="main">
-   <div class="container">
-      <div id="content" class="8u skel-cell-important">
-
+<section>
+    <header class="major">
+        <h4>Hi🖐️, {{ user }} 😉</h4>
          <h1>Blog Tag Cloud</h1>
+
+        <p>
+        <tr>
+            <th><i class="fa fa-plus"></i>&nbsp;&nbsp;<a href="{% url 'blog:add_category' %}">&nbsp;add_category &nbsp;</a></th>
+            <th><i class="fa fa-plus"></i>&nbsp;&nbsp;<a href="{% url 'blog:post_list' %}">&nbsp;post_list &nbsp;</a></th>
+        </tr>
+        </p>
+    </header>
+
          <br>
 
-         <div>
-            {% load taggit_templatetags2_tags %}
-            {% get_tagcloud as tags %}
-            {% for tag in tags %}
-            <span>
-               <a href="{% url 'blog:tagged_object_list' tag.name %}">{{tag.name}}({{tag.num_times}})</a>
-            </span>
-            {% endfor %}
-         </div>
-      </div>
-   </div>
-</div>
+         {% load taggit_templatetags2_tags %}
+         {% get_tagcloud as tags %}
+         {% comment %} {{tags}} {% endcomment %}
+         {% for tag in tags %}
+         <span>
+            <a href="{% url 'blog:tagged_object_list' tag.name %}"># {{tag.name}}({{tag.num_times}})</a>
+         </span>
+         <br>
+         {% endfor %}
+
+</section>
 {% endblock %}
 
 
-{% block footer%}
-<footer class="fixed-bottom bg-black">
-    <div class="text-black font-italic text-right mr-5"> Copyright &copy; by Jerry</div>
-</footer>
-{% endblock %}

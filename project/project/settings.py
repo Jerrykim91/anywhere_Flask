@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from django.core.exceptions import ImproperlyConfigured
+from datetime import date, datetime, time
 from pathlib import Path
 import json
 
@@ -58,13 +59,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog',
     'disqus',
-    'django.contrib.sites',
+    'widget_tweaks',
     'fontawesome-free',
+    'markdownx', # 마크 다운 
     'taggit.apps.TaggitAppConfig',
     'taggit_templatetags2',
-    # MainField,
+    'django.contrib.sites',
+    # app
+    'blog',
+    'linkList.apps.LinklistConfig',
+    'photo.apps.PhotoConfig',
 ]
 
 MIDDLEWARE = [
@@ -151,14 +156,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
 LANGUAGE_CODE = 'ko-kr'
+# LANGUAGE_CODE = 'en'
 
 # TIME_ZONE = 'UTC'
 TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 
@@ -171,18 +175,21 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 # MEDIA_URL = '/files/' # 업로드 할 경로
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'files')
 
-
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 
 
-# TAG
+# LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/'
 
+# MEDIA
 MEDIA_URL = '/media/'
 MEDIA_ROOT= [BASE_DIR / 'media']
+MARKDOWNX_MEDIA_PATH = datetime.now().strftime('markdownx/%Y/%m/%d')
 
+# TAG
 TAGGIT_CASE_INSENSITIVE= True
 TAGGIT_LIMIT = 50
 
@@ -192,3 +199,19 @@ DISQUS_SHORTNAME = "http-jerrykim91-pythonanywhere-com"
 DISQUS_MY_DOMAIN = 'https://jerrykim91.pythonanywhere.com/'
 
 SITE_ID = 1
+
+# 마크다운
+MARKDOWNX_MARKDOWN_EXTENSIONS = [
+    'markdown.extensions.extra', # 각주 
+    'markdown.extensions.toc', # 테이블 컨텐츠
+    'markdown.extensions.codehilite', # 문법 하이라이팅 
+    'markdown.extensions.fenced_code', # 코드블락
+]
+
+MARKDOWNX_MARKDOWN_EXTENSION_CONFIGS = {
+    'markdown.extensions.codehilite': {
+        'linenums': True,
+        'use_pygments': True,
+        'noclasses': True
+    }
+}

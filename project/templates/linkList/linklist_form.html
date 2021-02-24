@@ -1,0 +1,66 @@
+<!-- extends from base.html -->
+{% extends 'blog/base.html'%}
+
+<!-- title -->
+{% block title %}Link Form{% endblock %}
+{% load widget_tweaks %}
+{% load static %}
+
+<!-- contents -->
+{% block content %}
+
+<section>
+    <header class="major">
+        <h4>Hi🖐️, {{ user }} 😉</h4>
+        <h1>Link Mark Create & Update</h1>
+        
+        <p>
+        <tr>
+            <th><i class="fa fa-plus"></i>&nbsp;&nbsp;<a href="{% url 'linkList:add' %}">&nbsp;add &nbsp;</a></th>
+            <th><i class="fa fa-edit"></i>&nbsp;&nbsp;<a href="{% url 'linkList:change' %}">&nbsp;change &nbsp;</a></th>
+        </tr>
+        </p>
+    <hr style="margin: 0 0 20px 0;">
+           
+        <!-- Errors -->
+        {% if not form.errors %}
+        <h3> This is a creation or update form for your bookmark. </h3>
+        {% else %}
+        <h4>Wrong! Please, correct the error(s) below. Please try again.</h4>
+        <!-- err txt -->
+        <div class="alert alert-danger five" role="alert" style="width: auto%;">
+            {% for field in form %}
+            {% if field.errors %}
+            <strong>{{ field.label }}</strong>
+            {{ field.errors }}
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+    </header>
+    <hr style="margin: 0 0 20px 0;">
+    <div class="content">
+    <!-- form tag -->
+    <form method="post" action=".">
+        {% csrf_token %}
+        <!-- form -->
+        <div class='six'>
+            <table>
+                <!--  일일히 가져 오는것보다 이렇게 접근하는 것이 유용하다.  -->
+                {% for field in form.visible_fields %}
+                <tr>
+                    <td>{{ field.label_tag }}</td>
+                    <td>{{field}}</td>
+                </tr>
+                {% endfor %}
+
+            </table>
+            <!-- input -->
+            <input type="submit" value="submit" />
+        </div>
+    </form>
+    <br />
+    </div>
+        <hr style="margin: 0 0 20px 0;">
+    </section>
+{% endblock %}

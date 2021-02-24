@@ -1,0 +1,43 @@
+<!-- extends from base.html -->
+{% extends 'blog/base.html'%}
+
+<!-- title -->
+{% block title %}delete Form{% endblock %}
+{% load widget_tweaks %}
+{% load static %}
+
+<!-- contents -->
+{% block content %}
+
+<section>
+    <header class="major">
+        <h4>hi🖐️, {{ user }} 😉</h4>
+        <h1>Photo Delete</h1>
+
+        <p>
+        <tr>
+            <th><i class="fa fa-home"></i>&nbsp;&nbsp;<a href="{% url 'photo:album_list' %}">&nbsp;album_list &nbsp;</a></th>
+            <th><i class="fa fa-plus"></i>&nbsp;&nbsp;<a href="{% url 'photo:photo_add' %}">&nbsp;photo_add &nbsp;</a></th>
+        </tr>
+        </p>
+
+    </header>
+
+<hr style="margin: 0 20px 20px 0;">
+
+    <section>
+        <div class="content">
+        <!-- form tag -->
+         <br>
+            <form method="post" action=".">
+                {% csrf_token %}
+                <h3> Are you <strong>sure</strong> you want to delete "{{ object }}"</h3>
+                <br>
+                <input type="submit" value="Confirm" class="button primary fit small"/>
+            </form>
+            <br />
+        </div>
+    </section>
+</section>
+    <hr style="margin: 0 20px 20px 0;">
+{% endblock %}

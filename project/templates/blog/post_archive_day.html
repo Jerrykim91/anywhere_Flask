@@ -13,10 +13,12 @@
 <!-- contents -->
 {% block content %}
 
-<br>
-<h1>Post Archives for {{ day|date:'N d, Y' }}</h1>
-<ul>
-
+<div id="main">
+    <section class="post">
+        <header class="major">
+            <!-- <span class="date">{{ object.modify_dt|date:'j F Y' }}</span> // 오늘 날자 쓸수 있으면 좋겠다-->
+            <h2> Post Archives for {{ day|date:'N d, Y' }}</h2>
+        </header>
 
     <div>
         <ul>
@@ -31,15 +33,4 @@
 
     {% endblock %}
 
-    {% block footer%}
-    <footer class="fixed-bottom bg-black">
-        <div class="text-black font-italic text-right mr-5"> Copyright &copy; by Jerry</div>
-    </footer>
-    {% endblock %}
-
-
-    {% block footer%}
-<footer class="fixed-bottom bg-black">
-    <div class="text-black font-italic text-right mr-5"> Copyright &copy; by Jerry</div>
-</footer>
-{% endblock %}
+    <!-- 데이는 어떻게 이동하지?   -->

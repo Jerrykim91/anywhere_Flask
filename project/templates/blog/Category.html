@@ -1,0 +1,39 @@
+<!-- extends from base.html -->
+{% extends 'blog/base.html'%}
+
+<!-- title -->
+{% block title %}Category{% endblock %}
+{% load widget_tweaks %}
+{% load static %}
+
+<!-- contents -->
+{% block content %}
+
+<section>
+    <header class="major">
+        <h4>hi🖐️, {{ user }} 😉</h4>
+        <h1>ADD Category</h1>
+    </header>
+
+
+    <div class="content">
+
+    {% if user.is_authenticated %}
+        <form method='POST'>
+        {% csrf_token %} 
+        {{ form.as_p }}
+        <input type="submit" value="Add Category" />
+        {% comment %} <button class='btn btn-seccondary'>ADD category</button> {% endcomment %}
+        
+    {% else %}
+        <p> 로그인 하삼 </p>
+    {% endif %}
+    </div>
+
+    <br/>
+</section>
+{% endblock %}
+
+
+
+

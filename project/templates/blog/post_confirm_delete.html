@@ -1,0 +1,35 @@
+<!-- extends from base.html -->
+{% extends 'blog/base.html'%}
+
+<!-- title -->
+{% block title %}delete Form{% endblock %}
+{% load widget_tweaks %}
+{% load static %}
+
+<!-- contents -->
+{% block content %}
+
+<section>
+    <header class="major">
+        <h4>hi🖐️, {{ user }} 😉</h4>
+        <h1>Blog Delete!</h1>
+    </header>
+    
+<hr style="margin: 0 20px 20px 0;">
+
+    <section>
+        <div class="content">
+        <!-- form tag -->
+        <br>
+            <form method="post" action=".">
+                {% csrf_token %}
+                <h3> Are you <strong>sure</strong> you want to delete "{{ object }}"</h3>
+                 <br>
+                <input type="submit" value="Confirm" class="button primary fit small"/>
+            </form>
+            <br />
+    </section>
+</section>
+    <hr style="margin: 0 20px 20px 0;">
+
+{% endblock %}

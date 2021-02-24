@@ -15,12 +15,29 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from blog.views import HomeView
 
+# 추가
+from django.conf.urls.static import static
+from django.conf import settings
+
+# from blog.views import HomeView
+from project.views import HomeView
+from project.views import UserCreateView, UserCreateDoneTV
+
+ 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls), # 관리자 계정
+
+    # 인증 
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/register/',UserCreateView.as_view(), name='register' ),
+    path('accounts/register/done/', UserCreateDoneTV.as_view(),name ='register_done'),
+
     # 커스텀
     path('', HomeView.as_view(), name='home'),
     path('blog/', include('blog.urls')), # blog
-    
-]
+    path('photo/', include('photo.urls')), # blog
+    path('lnk/', include('linkList.urls')), # linkList
+    path('markdownx/', include('markdownx.urls')),
+
+] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
