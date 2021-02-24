@@ -36,7 +36,7 @@ urlpatterns = [
     # 커스텀
     path('', HomeView.as_view(), name='home'),
     path('blog/', include('blog.urls')), # blog
-    path('photo/', include('photo.urls')), # blog
+    path('photo/', include('photo.urls')), # photo
     path('lnk/', include('linkList.urls')), # linkList
     path('markdownx/', include('markdownx.urls')),
 
