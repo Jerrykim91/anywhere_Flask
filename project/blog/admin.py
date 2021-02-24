@@ -1,14 +1,14 @@
 from django.contrib import admin
 from blog.models import Post
-from .models import Category
-# from .models import Category, PhotoArt
+# from .models import Category
+from .models import Category, PhotoArt
 
 # 마크다운
 from markdownx.admin import MarkdownxModelAdmin
 
 # # Register your models here.
-# class PhotoInline(admin.TabularInline):
-#     model = PhotoArt
+class PhotoInline(admin.TabularInline):
+    model = PhotoArt
 
 @ admin.register(Post) # 데코레이터
 class PostAdmin(MarkdownxModelAdmin):
@@ -21,7 +21,7 @@ class PostAdmin(MarkdownxModelAdmin):
     list_display_links = ['id', 'title']
     list_filter = ('modify_dt',)
     search_fields = ('title', 'content')
-    # inlines = [PhotoInline, ] # Post 클래스는 해당하는 Photo 객체를 리스트로 관리하는 한다. 
+    inlines = [PhotoInline, ] # Post 클래스는 해당하는 Photo 객체를 리스트로 관리하는 한다. 
   
     # 자동으로 채워질 필드 설정 
     prepopulated_fields = {'slug':('title',)}
@@ -52,5 +52,5 @@ class PostAdmin(MarkdownxModelAdmin):
 admin.site.register(Category)
 
 # PhotoArt
-# admin.site.register(PhotoArt)
+admin.site.register(PhotoArt)
 

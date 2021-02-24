@@ -102,9 +102,9 @@ class Post(models.Model):
 
 
 # 이미지 
-# class PhotoArt(models.Model):
-#     post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True)
-#     image = models.ImageField(upload_to='post/%y/%m', blank=True, null=True)
+class PhotoArt(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True)
+    image = models.ImageField(upload_to='post/%y/%m', blank=True, null=True)
 
     # def __str__(self):
     #     """
