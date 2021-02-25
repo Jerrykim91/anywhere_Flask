@@ -39,8 +39,8 @@ urlpatterns = [
     path('about/', views.AboutDV.as_view(), name='post_about'), # /blog/about/
 
     # category
-    path('addCategory/',views.addCategoryView.as_view(), name='add_category'), # /blog/addCategory/
-    path('<str:cats>/',views.CategoryView, name='category'), # /blog/category_name/
+    # path('addCategory/',views.addCategoryView.as_view(), name='add_category'), # /blog/addCategory/
+    # path('<str:cats>/',views.CategoryView, name='category'), # /blog/category_name/
     # re_path(r'^post/(?P<str:cats>[-\w]+/$', views.CategoryView, name='category'),
 
 ]
