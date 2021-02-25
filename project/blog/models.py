@@ -24,8 +24,6 @@ class Category(models.Model):
     #     return reverse('blog:post_list') # args=(self.slug,)
 
 
-
-
 class Post(models.Model):
 
     owner        = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='OWNER',blank=True, null=True)
@@ -48,8 +46,8 @@ class Post(models.Model):
     # 이미지 
     image    = models.ImageField(upload_to='photo/%y/%m', blank=True, null=True)    
     
-    # category 
-    category     = models.CharField(max_length=150, null=True, blank=True, default='code')
+    # # category 
+    # category     = models.CharField(max_length=150, null=True, blank=True, default='code')
 
     class Meta:
 

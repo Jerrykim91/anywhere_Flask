@@ -31,7 +31,7 @@ from django.shortcuts import render  # render : 위에 제거하고 다시 작�
 from django.views.generic import CreateView, UpdateView, DeleteView 
 from django.contrib.auth.mixins import LoginRequiredMixin # login_required 기능 
 from django.urls import reverse_lazy
-from Portfolio.views import OwnerOnlyMixin
+from django.views import OwnerOnlyMixin
 
 
 # Create your views here.

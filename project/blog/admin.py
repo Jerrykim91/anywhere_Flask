@@ -1,7 +1,7 @@
 from django.contrib import admin
 from blog.models import Post
 # from .models import Category
-from .models import Category, PhotoArt
+from blog.models import Category, PhotoArt
 
 # 마크다운
 from markdownx.admin import MarkdownxModelAdmin
