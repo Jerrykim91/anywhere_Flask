@@ -21,8 +21,8 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 # from blog.views import HomeView
-from blog.views import HomeView
-from blog.views import UserCreateView, UserCreateDoneTV
+from project.views import HomeView
+from project.views import UserCreateView, UserCreateDoneTV
 
  
 urlpatterns = [
