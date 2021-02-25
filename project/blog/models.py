@@ -14,11 +14,11 @@ from markdownx.utils import markdownify
 # Create your models here.
 
 # models.py
-class Category(models.Model):
-    name          = models.CharField(max_length=150)
+# class Category(models.Model):
+#     name          = models.CharField(max_length=150)
 
-    def __str__(self):    
-        return self.name
+#     def __str__(self):    
+#         return self.name
 
     # def get_absolute_url(self):
     #     return reverse('blog:post_list') # args=(self.slug,)

@@ -12,7 +12,7 @@ from django.views.generic.dates import DayArchiveView, TodayArchiveView
 
 # 2-1. 테이블 조회를 위한 모델 임포트
 # from blog.models import Post, Category
-from blog.models import Post, Category, PhotoArt
+from blog.models import Post, PhotoArt
 # 2-2. 템플릿 뷰
 from django.views.generic import TemplateView
 
@@ -44,20 +44,20 @@ https://pjs21s.github.io/category-recursive/
 https://docs.djangoproject.com/en/3.1/topics/http/urls/
 """
 
-class addCategoryView(LoginRequiredMixin,CreateView):
-    model       = Category
-    template_name = 'blog/category.html'
-    fields = '__all__'
+# class addCategoryView(LoginRequiredMixin,CreateView):
+#     model       = Category
+#     template_name = 'blog/category.html'
+#     fields = '__all__'
 
 
 
-def CategoryView(request, cats):
-    """
-    함수 사용 
-    """
-    category_posts = Post.objects.filter(category=cats.replace('-',' '))
+# def CategoryView(request, cats):
+#     """
+#     함수 사용 
+#     """
+#     category_posts = Post.objects.filter(category=cats.replace('-',' '))
 
-    return render(request,"blog/categories.html",{'cats':cats.title().replace('-',' '),'category_posts':category_posts})
+#     return render(request,"blog/categories.html",{'cats':cats.title().replace('-',' '),'category_posts':category_posts})
 
 #ListView
 class PostLV(ListView):
