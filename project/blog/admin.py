@@ -17,7 +17,7 @@ class PostAdmin(MarkdownxModelAdmin):
     보여줄지를 정의하는 클래스
     """
     # 보여줄 필드 
-    list_display = ('id', 'title', 'owner','category','modify_dt','tag_list')
+    list_display = ('id', 'title', 'owner','modify_dt','tag_list')
     list_display_links = ['id', 'title']
     list_filter = ('modify_dt',)
     search_fields = ('title', 'content')
