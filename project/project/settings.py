@@ -69,7 +69,7 @@ INSTALLED_APPS = [
     # app
     'blog',
     'linkList.apps.LinklistConfig',
-    'photo.apps.PhotoConfig',
+    # 'photo.apps.PhotoConfig',
 ]
 
 MIDDLEWARE = [
