@@ -22,16 +22,16 @@ from django.conf import settings
 
 # from blog.views import HomeView
 from project.views import HomeView
-from project.views import UserCreateView, UserCreateDoneTV
+# from project.views import UserCreateView, UserCreateDoneTV
 
  
 urlpatterns = [
     path('admin/', admin.site.urls), # 관리자 계정
 
     # 인증 
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/register/',UserCreateView.as_view(), name='register' ),
-    path('accounts/register/done/', UserCreateDoneTV.as_view(),name ='register_done'),
+    # path('accounts/', include('django.contrib.auth.urls')),
+    # path('accounts/register/',UserCreateView.as_view(), name='register' ),
+    # path('accounts/register/done/', UserCreateDoneTV.as_view(),name ='register_done'),
 
     # 커스텀
     path('', HomeView.as_view(), name='home'),

@@ -53,12 +53,12 @@
                             <ul>
                                 <li><a href="{% url 'blog:post_about' %}">mystortys</a></li>
                                 <li><a href="{% url 'photo:index' %}">Photo</a></li>
-                                <li><a href="{% url 'blog:add_category' %}">add_category</a></li>
+                                {% comment %} <li><a href="{% url 'blog:add_category' %}">add_category</a></li> {% endcomment %}
 
                                 {% comment %} 관리 {% endcomment %}
                                 <li><a href="{% url 'admin:index' %}"> &nbsp; - Admin</a></li>
-                                <li><a href="{% url 'register' %}"> &nbsp; - Register</a></li>
-                                <li><a href="{% url 'password_change' %}" title="Change Password"> &nbsp; - Change Password</a></li>
+                                {% comment %} <li><a href="{% url 'register' %}"> &nbsp; - Register</a></li> {% endcomment %}
+                                {% comment %} <li><a href="{% url 'password_change' %}" title="Change Password"> &nbsp; - Change Password</a></li> {% endcomment %}
                             </ul>
                         </li>
                     </ul>
@@ -70,7 +70,7 @@
                     <br>
                     <ul>
                         <li><a href="{% url 'home' %}" class="icon solid fa fa-home"> &nbsp; Home</a></li>
-                        <li><a href="{% url 'logout' %}" class="icon solid fas fa-sign-out-alt"> &nbsp; Logout</a></li>
+                        {% comment %} <li><a href="{% url 'logout' %}" class="icon solid fas fa-sign-out-alt"> &nbsp; Logout</a></li> {% endcomment %}
                         {% comment %} <li><a href="{% url 'home' %}">Home</a></li> {% endcomment %}
                         
                         <li><a href="{% url 'blog:post_list' %}">Posts</a></li>
@@ -87,7 +87,11 @@
                 {% else %}
                     
                 <ul>
-                    <li><a href="{% url 'home' %}" class="icon solid fa fa-home"> &nbsp; Visiter</a></li>
+                    <li><a href="{% url 'admin:index' %}" class="icon solid fa fa-home"> &nbsp; Hi,Visiter🖐️</a></li>
+
+                    <li><a href="{% url 'home' %}" class="icon solid fa fa-home"> &nbsp; Home</a></li>
+                    <li><a href="{% url 'blog:post_about' %}">mystortys</a></li>
+                    <li><a href="{% url 'blog:post_list' %}">Posts</a></li>
                     {% comment %} <li><a href="{% url 'login' %}" class="icon solid fa fa-user"> &nbsp; Login</a></li> {% endcomment %}
                 </ul>
                 

@@ -31,7 +31,7 @@ from django.shortcuts import render  # render : 위에 제거하고 다시 작�
 from django.views.generic import CreateView, UpdateView, DeleteView 
 from django.contrib.auth.mixins import LoginRequiredMixin # login_required 기능 
 from django.urls import reverse_lazy
-from project.views import OwnerOnlyMixin
+# from project.views import OwnerOnlyMixin
 
 
 # Create your views here.
@@ -132,14 +132,16 @@ class PostChangeLV(LoginRequiredMixin,ListView):
     def get_queryset(self):
         return Post.objects.filter(owner=self.request.user)
 
-class PostUpdateView(OwnerOnlyMixin,UpdateView):
+# class PostUpdateView(OwnerOnlyMixin,UpdateView):
+class PostUpdateView(UpdateView):
     model       = Post # 생략하면 에러 발생  : django.core.exceptions.ImproperlyConfigured 'someting'is missing a QuerySet.
     form_class  = PostEdit
     # fields      = ['category','title','slug','description','content','tags']
     success_url = reverse_lazy('blog:index') # redirect
     # template_name = 'blog/post_form.html'
 
-class PostDeleteView(OwnerOnlyMixin, DeleteView):
+# class PostDeleteView(OwnerOnlyMixin, DeleteView):
+class PostDeleteView( DeleteView):
     model         = Post
     success_url   = reverse_lazy('blog:index') # redirect
     template_name = 'blog/post_confirm_delete.html'

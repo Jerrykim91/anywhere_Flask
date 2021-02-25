@@ -9,21 +9,22 @@
 <section>
     <div class="content">
         <header>
-            {% if  user.is_authenticated %}
+            {% if user.is_authenticated %}
                 <h1>Hi🖐️, {% firstof user.get_short_name user.get_username %}
                 {% else %}
                 <h1>Hi🖐️, Visiter
             {% endif %}
             <br>Wellcome My Bolg.</h1>
             <span class="image fit"><img
-                    src="https://64.media.tumblr.com/5da981651a7128b32171f2b6a3efcb14/tumblr_p32oen6pot1sfyngeo4_1280.jpg"
-                    alt=""></span>
-            <p>A free and fully responsive site template</p>
+                    src="https://images.unsplash.com/photo-1613807871118-9e983601b759?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1275&q=80"
+                    alt="https://images.unsplash.com"></span>
+            <p>테스트 중 : 간혹 서버 죽을수도 있음</p>
         </header>
         <p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante
             interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet
             egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas.
             Pellentesque sapien ac quam. Lorem ipsum dolor sit nullam.</p>
+             <p>Demo Images:<a href="https://unsplash.com">Unsplash</a>.</p>
 
         <ul class="actions">
             <li><a href="{% url 'blog:post_about' %}" class="button big">See More</a></li>
