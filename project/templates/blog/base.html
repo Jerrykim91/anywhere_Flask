@@ -21,7 +21,7 @@
     <!-- link -->
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-    <link rel="stylesheet" href="{% static 'imperfect/assets/css/main.css' %}" />
+    {% comment %} <link rel="stylesheet" href="{% static 'imperfect/assets/css/main.css' %}" /> {% endcomment %}
     {% endblock %}
 </head>
 
@@ -277,11 +277,11 @@
 
 
     <!-- Scripts -->
-    <script src="{% static 'imperfect/assets/js/jquery.min.js' %}"></script>
+    {% comment %} <script src="{% static 'imperfect/assets/js/jquery.min.js' %}"></script>
     <script src="{% static 'imperfect/assets/js/browser.min.js' %}"></script>
     <script src="{% static 'imperfect/assets/js/breakpoints.min.js' %}"></script>
     <script src="{% static 'imperfect/assets/js/util.js' %}"></script>
-    <script src="{% static 'imperfect/assets/js/main.js' %}"></script>
+    <script src="{% static 'imperfect/assets/js/main.js' %}"></script> {% endcomment %}
 
 </body>
 
