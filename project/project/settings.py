@@ -68,7 +68,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     # app
     'blog',
-    'linkList.apps.LinklistConfig',
+    # 'linkList.apps.LinklistConfig',
     # 'photo.apps.PhotoConfig',
 ]
 

@@ -5,84 +5,92 @@
 
 {% block content %}
 
-
-<section>
-    <div class="content">
-        <header>
-            {% if user.is_authenticated %}
-                <h1>Hi🖐️, {% firstof user.get_short_name user.get_username %}
-                {% else %}
-                <h1>Hi🖐️, Visiter
-            {% endif %}
-            <br>Wellcome My Bolg.</h1>
-            <span class="image fit"><img
-                    src="https://images.unsplash.com/photo-1613807871118-9e983601b759?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1275&q=80"
-                    alt="https://images.unsplash.com"></span>
-            <p>테스트 중 : 간혹 서버 죽을수도 있음</p>
-        </header>
-        <p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante
-            interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet
-            egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas.
-            Pellentesque sapien ac quam. Lorem ipsum dolor sit nullam.</p>
-             <p>Demo Images:<a href="https://unsplash.com">Unsplash</a>.</p>
-
-        <ul class="actions">
-            <li><a href="{% url 'blog:post_about' %}" class="button big">See More</a></li>
-        </ul>
-    </div>
-</section>
-
-
-<section id="two">
-    <header>
-        <h1>New Posts</h1>
-    </header>
-
-    <div class="row">
-        <article class="col-6 col-12-xsmall work-test">
-            <!--  full에세서 무작위 하나  // thumb은 메인  -->
-            <span class="image fit"><img src="https://images.unsplash.com/photo-1613807871118-9e983601b759?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1275&q=80" alt=""></span>
-            <p>Demo Images:<a href="https://unsplash.com">Unsplash</a>.</p>
-            <br>
-            <h3>어떻게 만들지?🤔</h3>
-            <p>디테일! 한글도 이쁘다!!</p>
+        <!-- Post -->
+        <article class="post">
+            <header>
+                <div class="title">
+                    <h2><a href="single.html">Magna sed adipiscing</a></h2>
+                    <p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p>
+                </div>
+                <div class="meta">
+                    <time class="published" datetime="2015-11-01">November 1, 2015</time>
+                    <a href="#" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>
+                </div>
+            </header>
+            <a href="single.html" class="image featured"><img src="https://64.media.tumblr.com/5da981651a7128b32171f2b6a3efcb14/tumblr_p32oen6pot1sfyngeo4_1280.jpg" alt="" /></a>
+            <p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+            <footer>
+                <ul class="actions">
+                    <li><a href="single.html" class="button large">Continue Reading</a></li>
+                </ul>
+                <ul class="stats">
+                    <li><a href="#">General</a></li>
+                    <li><a href="#" class="icon solid fa-heart">28</a></li>
+                    <li><a href="#" class="icon solid fa-comment">128</a></li>
+                </ul>
+            </footer>
         </article>
-        <article class="col-6 col-12-xsmall work-test">
-            <!--  full 은 처음 // thumb은 메인  -->
-            <a href="#" class="image fit thumb"><img src="https://images.unsplash.com/photo-1613748247129-ba2a38d6fc5e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80" alt=""></a>
-            <p>Demo Images:<a href="https://unsplash.com">Unsplash</a>.</p>
-            <br>
-            <h3>어떻게 만들지?🤔</h3>
-            <ol>
-                <li>사진 크기 fix 해야겠다!</li>
-                <li>button fit이랑 전체적으로 타이트한거 여백주기 </li>
-                <li>폰트 변경확인해보고 변경해보기</li>
-                <li>네비바 고정하던지 같이 밀리던지 </li>
-                <li>br 마진 css 튜닝할것 ! </li>
-                <li>N/A</li>
-            </ol>
-            
-        </article>
-        <!-- <article class="col-6 col-12-xsmall work-item">
-            <a href="images/fulls/03.jpg" class="image fit thumb"><img src="images/thumbs/03.jpg" alt="" /></a>
-            <h3>Tortor metus commodo</h3>
-            <p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>
-        </article>
-        <article class="col-6 col-12-xsmall work-item">
-            <a href="images/fulls/04.jpg" class="image fit thumb"><img src="images/thumbs/04.jpg" alt="" /></a>
-            <h3>Quam neque phasellus</h3>
-            <p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>
-        </article>
-        <article class="col-6 col-12-xsmall work-item">
-            <a href="images/fulls/05.jpg" class="image fit thumb"><img src="images/thumbs/05.jpg" alt="" /></a>
-            <h3>Nunc enim commodo aliquet</h3>
-            <p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>
-        </article>
-        <article class="col-6 col-12-xsmall work-item">
-            <a href="images/fulls/06.jpg" class="image fit thumb"><img src="images/thumbs/06.jpg" alt="" /></a>
-            <h3>Risus ornare lacinia</h3>
-            <p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>
-        </article> -->
+
+        <!-- Post -->
+            <article class="post">
+                <header>
+                    <div class="title">
+                        <h2><a href="single.html">이미지 없는</a></h2>
+                        <p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p>
+                    </div>
+                    <div class="meta">
+                        <time class="published" datetime="2015-10-25">October 25, 2015</time>
+                        <a href="#" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>
+                    </div>
+                </header>
+                <a href="single.html" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
+                <p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper.</p>
+                <footer>
+                    <ul class="actions">
+                        <li><a href="single.html" class="button large">Continue Reading</a></li>
+                    </ul>
+                    <ul class="stats">
+                        <li><a href="#">General</a></li>
+                        <li><a href="#" class="icon solid fa-heart">28</a></li>
+                        <li><a href="#" class="icon solid fa-comment">128</a></li>
+                    </ul>
+                </footer>
+            </article>
+
+        <!-- Post -->
+            <article class="post">
+                <header>
+                    <div class="title">
+                        <h2><a href="single.html">어떻게 만들지?🤔</a></h2>
+                        <p>Demo Images:<a href="https://unsplash.com">Unsplash</a>.</p>
+                    </div>
+                    <div class="meta">
+                        <time class="published" datetime="2015-10-22">October 22, 2015(작성일자)</time>
+                        <a href="#" class="author"><span class="name">Jane Doe</span><img src="test/images/avatar.jpg" alt="" /></a>
+                    </div>
+                </header>
+                <a href="single.html" class="image featured"><img src="https://images.unsplash.com/photo-1613807871118-9e983601b759?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1275&q=80" alt="" /></a>
+                <h3>어떻게 만들지?🤔</h3>
+                    <ol>
+                        <li>사진 크기 fix 해야겠다!</li>
+                        <li>button fit이랑 전체적으로 타이트한거 여백주기 </li>
+                        <li>폰트 변경확인해보고 변경해보기</li>
+                        <li>네비바 고정하던지 같이 밀리던지 </li>
+                        <li>br 마진 css 튜닝할것 ! </li>
+                        <li>N/A</li>
+                    </ol>
+                <footer>
+                    <ul class="actions">
+                        <li><a href="single.html" class="button large">Continue Reading</a></li>
+                    </ul>
+                    <ul class="stats">
+                        <li><a href="#">General</a></li>
+                        <li><a href="#" class="icon solid fa-heart">28</a></li>
+                        <li><a href="#" class="icon solid fa-comment">128</a></li>
+                    </ul>
+                </footer>
+            </article>
+
     </div>
 </section>
 
