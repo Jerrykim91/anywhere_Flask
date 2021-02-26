@@ -11,8 +11,8 @@ from django.views.generic.dates import ArchiveIndexView, YearArchiveView, MonthA
 from django.views.generic.dates import DayArchiveView, TodayArchiveView
 
 # 2-1. 테이블 조회를 위한 모델 임포트
-# from blog.models import Post, Category
-from blog.models import Post, PhotoArt
+# from blog.models import Post, Category , PhotoArt
+from blog.models import Post
 # 2-2. 템플릿 뷰
 from django.views.generic import TemplateView
 
@@ -82,7 +82,7 @@ class AboutDV(TemplateView):
 # DetailView
 class PostDV(DetailView):
     model = Post
-    img_posts = PhotoArt.objects.filter()
+    # img_posts = PhotoArt.objects.filter()
 
     def get_context_data(self, **kwargs):
         """

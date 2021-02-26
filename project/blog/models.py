@@ -1,7 +1,7 @@
 from django.db import models
 from django.urls import reverse  
 from taggit.managers import TaggableManager # 태그
-from photo.fields import ThumbnailImageField
+# from photo.fields import ThumbnailImageField
 
 from django.contrib.auth.models import User
 from django.utils.text import slugify
@@ -100,9 +100,9 @@ class Post(models.Model):
 
 
 # 이미지 
-class PhotoArt(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True)
-    image = models.ImageField(upload_to='post/%y/%m', blank=True, null=True)
+# class PhotoArt(models.Model):
+#     post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True)
+#     image = models.ImageField(upload_to='post/%y/%m', blank=True, null=True)
 
     # def __str__(self):
     #     """
