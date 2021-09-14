@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/vendor/prismjs/themes/prism-okaidia.css">
+    <link rel="stylesheet" href="/static/css/custom.min.css">
+
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23019901-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-23019901-1');
+    </script>
+  </head>
+
+  <body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">Navbar</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+          
+              <div class="collapse navbar-collapse" id="navbarColor02">
+                <ul class="navbar-nav me-auto">
+                  <li class="nav-item">
+                    <a class="nav-link active" href="/">Home
+                      <span class="visually-hidden">(current)</span>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Features</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Pricing</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Separated link</a>
+                    </div>
+                  </li>
+                </ul>
+                <form class="d-flex">
+                  <input class="form-control me-sm-2" type="text" placeholder="Search">
+                  <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                </form>
+              </div>
+            </div>
+          </nav>
+        <br>
+        <div class="container">
+          <div class="bs-component">
+            <legend>{{date}}</legend>
+            <form>
+              <fieldset>
+                <legend>Info</legend>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label">Info</label>
+                  <div class="col-sm-10">
+                    <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1" class="form-label mt-4">Email address</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1" class="form-label mt-4">slack-number</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="슬랙 넘버">
+                </div>
+
+                <!-- Time -->
+                <br>
+                <div class="form-group">
+                <legend>Time</legend>
+                
+                  <label for="exampleSelect1" class="form-label">Select Min</label>
+                  <select class="form-select" id="exampleSelect1">
+                    <option>10</option>
+                    <option>20</option>
+                    <option>30</option>
+                    <option>40</option>
+                    <option>50</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleTextarea" class="form-label mt-4">Memo</label>
+                  <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                </div>
+
+                
+                <button type="Submit" class="btn btn-secondary mt-4">Submit</button>
+
+              </fieldset>
+            </form>
+          </div>
+        </div>
+
+
+      <footer id="footer">
+        <div class="row">
+          <div class="col-lg-12">
+            <ul class="list-unstyled">
+              <li class="float-end"><a href="#top">Back to top</a></li>
+              <li><a href="https://blog.bootswatch.com/">Blog</a></li>
+              <li><a href="https://github.com/jerrykim91/test/WEBSERVER">GitHub</a></li>
+
+            </ul>
+            <p>Made by <a href="https://thomaspark.co/">Thomas Park</a>.</p>
+            <p>Code released under the <a href="https://github.com/thomaspark/bootswatch/blob/master/LICENSE">MIT License</a>.</p>
+            <p>Based on <a href="https://getbootstrap.com/" rel="nofollow">Bootstrap</a>. Icons from <a href="https://fontawesome.com/" rel="nofollow">Font Awesome</a>. Web fonts from <a href="https://fonts.google.com/" rel="nofollow">Google</a>.</p>
+
+          </div>
+        </div>
+      </footer>
+    </div>
+    <!-- 여기는 나중 문제 -->
+    <script src="/static/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/vendor/prismjs/prism.js" data-manual></script>
+    <script src="/static/assets/js/custom.js"></script>
+  </body>
+</html>
